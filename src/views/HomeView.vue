@@ -1,0 +1,39 @@
+<template>
+  <div class="home">
+    <echarts1_6></echarts1_6>
+    <echarts7_12></echarts7_12>
+    <echarts13_18></echarts13_18>
+    <echarts19_24></echarts19_24>
+  </div>
+</template>
+
+<script>
+// @ is an alias to /src
+import echarts1_6 from './echarts1_6/index.vue'
+import echarts7_12 from './echarts7_12/index.vue'
+import echarts13_18 from './echarts13_18/index.vue'
+import echarts19_24 from './echarts19_24/index.vue'
+
+export default {
+  name: 'HomeView',
+  components: {
+    echarts1_6,
+    echarts7_12,
+    echarts13_18,
+    echarts19_24
+  }
+}
+</script>
+<style lang="less" scoped>
+.home{
+    padding-top: 100px;
+    // background: linear-gradient(rgba(40,140,234,0.3), rgba(40,140,234, 0)), url('../assets/home-bgc.png') no-repeat ;
+    background-image: url(../assets/home-bgc.png);
+
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    width: 100vw;
+    min-height: 100vh;
+
+}
+</style>
