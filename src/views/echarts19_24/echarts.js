@@ -1,4 +1,8 @@
 import {util} from "../../common/util";
+const circle = require('./icon-echarts-circle.png')
+const _cnDic = { 5: '万',6: '万', 7: '万', 8: '万', 9: '万', 10: '亿', 11: '亿', 12: '亿', 13: '亿', 14: '亿',},
+    _divisor = { 5: 10000, 6: 10000, 7: 10000, 8: 10000, 9: 10000,
+    10: 100000000, 11: 100000000, 12: 100000000, 13: 100000000, 14: 100000000,};
 const echarts = require('echarts');
 const TOOLTIP_STYLE = {
     backgroundColor: 'rgba(0, 24, 62, 0.6)',
@@ -306,20 +310,30 @@ const option3 =  {
         }
     ]
 };
-const option5 = {
+const option4 = {
     title: {
         text: '',
     },
     tooltip: {
         ...TOOLTIP_STYLE, ...{
             trigger: 'axis',
+            formatter: (params) => {
+                let content = ''
+                params.forEach(item => {
+                    if (item.seriesName) {
+                        content += `<div>${item.name}</div>
+                        <div>${item.marker}<span style="margin-left: 20px;">${Math.abs(item.value)}</span></div>`
+                    }
+                });
+                return content
+            }
         }
     },
     grid: {
         left: '40',
         right: '0',
         bottom: '30',
-        top: '24',
+        top: '74',
     },
     yAxis: {
         splitLine: { // 分隔线
@@ -337,20 +351,20 @@ const option5 = {
             },
         },
         axisLabel: {
+            formatter(e,v) {
+                return Math.abs(e);
+            },
             show: true,
-            textStyle: {
-                color: 'rgba(112, 151, 215, 1)',
-                fontSize: fontSize(0.12),
-            }
+            color: 'rgba(112, 151, 215, 1)',
+            fontSize: fontSize(0.12),
         },
     },
     xAxis: {
         axisLabel: {
             show: true,
-            textStyle: {
-                color: 'rgba(124, 147, 200, 1)',
-                fontSize: fontSize(0.12),
-            }
+            color: 'rgba(124, 147, 200, 1)',
+            fontSize: fontSize(0.12),
+            interval: 0,
         },
         axisLine: {
             show: true,
@@ -359,11 +373,12 @@ const option5 = {
             },
         },
         data: ['杭州', '宁波', '温州', '绍兴', '嘉兴', '湖州', '金华', '台州', '衢州', '丽水', '舟山']
+        // data: []
     },
     series: [
         {
             // 上半截柱子
-            name: '2019',
+            name: '',
             type: 'bar',
             barWidth: '18',
             barGap: '-100%',
@@ -429,14 +444,15 @@ const option5 = {
         },
         {
             // 下半截柱子
-            name: '2020',
+            name: '2022',
             type: 'bar',
             barWidth: 18,
             barGap: '-100%',
             itemStyle: {
                 opacity: 1,
                 color: function (params) {
-                    if(params.data < 0) {
+                    console.log(params)
+                    if (params.dataIndex >= 5) {
                         return new echarts.graphic.LinearGradient(
                             0,
                             1,
@@ -476,6 +492,7 @@ const option5 = {
                 },
             },
             data: [32.1, 20.2, 9.5, 4.2, 20, -50.3, -30],
+            // data: []
         },
         {
             //数据圆片
@@ -505,6 +522,7 @@ const option5 = {
                     },
                 }
             ],
+            data: [],
             label: {
                 show: true,
                 position: 'left',
@@ -568,9 +586,258 @@ const option5 = {
                     }
                 }
             ],
+            data: []
         },
     ],
 };
+const option5 = () => {
+    let option =
+     {
+        title: {
+            text: '',
+        },
+        tooltip: {
+            ...TOOLTIP_STYLE, ...{
+                trigger: 'axis',
+                formatter: (params) => {
+                    let content = ''
+                    params.forEach((item, index) => {
+                        if(item.seriesName) {
+                            if(index === 0) {
+                                content += `<div>${item.name}</div>`
+                            }
+                            if((params.length > 1 && (index === 2 || index === 4)) || params.length === 1) {
+                                content += `<div>${item.marker}${item.seriesName}<span style="margin-left: 20px;">${item.value}</span></div>`
+                            }
+                        }
+                    });
+                    return content
+                }
+            }
+        },
+        legend: {
+            icon: 'rect',
+            top: 5,
+            right: 0,
+            itemWidth: 8,
+            itemHeight: 8,
+            padding: 0,
+            textStyle: {
+                color: '#BFD1FB',
+                fontSize: fontSize(0.14),
+                padding: [2, 0, 0, 0],
+            },
+            data: [{
+                name: '供应总量（公顷）',
+                itemStyle: {
+                    color: 'rgba(251, 255, 3, 1)'
+                }
+            }, {
+                name: '同比增速（%）',
+                itemStyle: {
+                    color: '#04D99E'
+                }
+            }],
+        },
+        grid: {
+            left: '40',
+            right: '40',
+            bottom: '30',
+            top: '32',
+        },
+        yAxis: [{
+            splitLine: { // 分隔线
+                show: true, // 默认显示，属性show控制显示与否
+                lineStyle: { // 属性lineStyle（详见lineStyle）控制线条样式
+                    color: 'rgba(3, 49, 77, 1)',
+                    width: 1,
+                    type: 'dashed'
+                }
+            },
+            axisLine: {
+                show: false,
+                lineStyle: {
+                    color: 'rgba(3, 49, 77, 1)',
+                },
+            },
+            axisLabel: {
+                formatter(e) {
+                    if (_cnDic[option.maxLength]) {
+                        if (option.maxLength === 5) {
+                            return ( e === 0 ? 0  : (e / (_divisor[option.maxLength])).toFixed(1)) + _cnDic[option.maxLength]
+                        } else {
+                            return Math.ceil(e / (_divisor[option.maxLength]))  + _cnDic[option.maxLength]
+                        }
+                    } else {
+                        return e;
+                    }
+                },
+                show: true,
+                color: 'rgba(112, 151, 215, 1)',
+                fontSize: fontSize(0.12),
+            },
+        }, {
+            splitLine: { // 分隔线
+                show: true, // 默认显示，属性show控制显示与否
+                lineStyle: { // 属性lineStyle（详见lineStyle）控制线条样式
+                    color: 'rgba(3, 49, 77, 1)',
+                    width: 1,
+                    type: 'dashed'
+                }
+            },
+            axisLine: {
+                show: false,
+                lineStyle: {
+                    color: 'rgba(3, 49, 77, 1)',
+                },
+            },
+            axisLabel: {
+                formatter(e) {
+                    if (_cnDic[option.maxLength2]) {
+                        if (option.maxLength2 === 5) {
+                            return ( e === 0 ? 0  : (e / (_divisor[option.maxLength2])).toFixed(1)) + _cnDic[option.maxLength2]
+                        } else {
+                            return Math.ceil(e / (_divisor[option.maxLength2]))  + _cnDic[option.maxLength2]
+                        }
+                    } else {
+                        return e;
+                    }
+                },
+                show: true,
+                color: 'rgba(112, 151, 215, 1)',
+                fontSize: fontSize(0.12),
+            },
+        }],
+        xAxis: {
+            axisLabel: {
+                show: true,
+                color: 'rgba(124, 147, 200, 1)',
+                fontSize: fontSize(0.12),
+                interval: 0
+            },
+            axisLine: {
+                show: true,
+                lineStyle: {
+                    color: 'rgba(3, 49, 77, 1)',
+                },
+            },
+            data: ['杭州', '宁波', '温州', '绍兴', '嘉兴', '湖州', '金华', '台州', '衢州', '丽水', '舟山']
+        },
+        series: [
+            {
+                // 上半截柱子
+                name: '',
+                type: 'bar',
+                barWidth: '18',
+                barGap: '-100%',
+                a: 1,
+                z: 0,
+                itemStyle: {
+                    //lenged文本
+                    opacity: 1,
+                    color: function (params) {
+                        return new echarts.graphic.LinearGradient(
+                            0,
+                            0,
+                            1,
+                            0,
+                            [
+                                {
+                                    offset: 0,
+                                    color: 'rgba(51, 80, 165, 0.4000)', // 0% 处的颜色
+                                },
+                                {
+                                    offset: 1,
+                                    color: 'rgba(51, 80, 165, 0.4000)', // 100% 处的颜色
+                                },
+                            ],
+                            false
+                        );
+                    },
+                },
+                data: [50, 50, 50, 50, 50],
+            },
+            {
+                //最上面圆片
+                name: '',
+                type: 'pictorialBar',
+                symbolSize: [18, 4],
+                symbolOffset: [0, -2],
+                z: 3,
+                symbolPosition: 'end',
+                itemStyle: {
+                    color: 'rgba(24, 36, 69, 1)',
+                    opacity: 1,
+                },
+                data: [50, 50, 50, 50, 50],
+            },
+            {
+                // 下半截柱子
+                name: '同比增速（%）',
+                type: 'bar',
+                barWidth: 18,
+                barGap: '-100%',
+                itemStyle: {
+                    //lenged文本
+                    opacity: 1,
+                    color: function (params) {
+                        return new echarts.graphic.LinearGradient(
+                            0,
+                            0,
+                            0,
+                            1,
+                            [
+                                {
+                                    offset: 0,
+                                    color: '#04D99E', // 0% 处的颜色
+                                },
+                                {
+                                    offset: 1,
+                                    color: 'rgba(0, 255, 169, 0)', // 100% 处的颜色
+                                },
+                            ],
+                            false
+                        );
+                    },
+                },
+                data: [32.1, 20.2, 9.5, 4.2, 2.3],
+            },
+            {
+                //数据圆片
+                name: '',
+                type: 'pictorialBar',
+                symbolSize: [18, 4],
+                symbolOffset: [0, -2],
+                z: 3,
+                itemStyle: {
+                    opacity: 1,
+                    color: 'rgba(185, 243, 255, 1)'
+                },
+                symbolPosition: 'end',
+                data: [32.1, 20.2, 9.5, 4.2, 2.3],
+                label: {
+                    show: true,
+                    position: 'left',
+                    distance: -770,
+                    formatter: '{c}%'
+                },
+            },
+            {
+                name: '供应总量（公顷）',
+                type: 'line',
+                yAxisIndex: 1,
+                smooth: false,
+                symbol: 'image://' + circle,
+                symbolSize: 18,
+                itemStyle: {
+                    color: 'rgba(251, 255, 3, 1)',
+                },
+                data: [40, 6, 7, 20, 10, 20, 20, 20, 10]
+            }
+        ],
+    }
+    return option;
+}
 
 const option6 = 
     {
@@ -625,4 +892,4 @@ const option6 =
 
 
 
-export { option1 ,option2,option3,option5,option6}
+export { option1 ,option2,option3,option4,option5,option6}
