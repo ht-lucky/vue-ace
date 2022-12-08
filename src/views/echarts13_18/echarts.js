@@ -1,4 +1,4 @@
-import {util} from "../../common/util";
+import { util } from "../../common/util";
 import "echarts-gl";
 const echarts = require('echarts');
 const TOOLTIP_STYLE = {
@@ -43,7 +43,7 @@ let TOOLTIP_STYLE1 = {
     },
     formatter(params) {
         let toolVal = '';
-        toolVal = params[0].marker +" " + '适龄人口占比：' + params[0].data
+        toolVal = params[0].marker + " " + '适龄人口占比：' + params[0].data
         return toolVal
         // console.log(params)
     }
@@ -54,7 +54,7 @@ const option1 = {
             trigger: 'item',
             formatter(e, v) {
                 if (e.name) {
-                    return e.marker + e.name + ": " + e.value + "人" + "<br/>"  + '  ' +  "占比 " + e.percent + '%'
+                    return e.marker + e.name + ": " + e.value + "人" + "<br/>" + '  ' + "占比 " + e.percent + '%'
                 }
             },
         }
@@ -68,8 +68,8 @@ const option1 = {
         left: 'center',
         top: 'center'
     },
-    color: ['rgba(36, 123, 252, 1)','rgba(0, 220, 226, 1)','rgba(239, 149, 43, 1)',
-        'rgba(36, 123, 252, 0.2)','rgba(0, 220, 226, 0.2)','rgba(239, 149, 43, 0.2)'],
+    color: ['rgba(36, 123, 252, 1)', 'rgba(0, 220, 226, 1)', 'rgba(239, 149, 43, 1)',
+        'rgba(36, 123, 252, 0.2)', 'rgba(0, 220, 226, 0.2)', 'rgba(239, 149, 43, 0.2)'],
 
     series: [
         {
@@ -121,9 +121,9 @@ const option1 = {
                 show: false
             },
             data: [
-                { value: 33},
-                { value: 33},
-                { value: 33},
+                { value: 33 },
+                { value: 33 },
+                { value: 33 },
 
             ]
         }
@@ -144,7 +144,7 @@ const option2 = {
             fontSize: fontSize(0.14),
             color: '#fff'
         },
-        data: [{name: '地块数量', icon: 'circle',}, {name: '地块面积'}]
+        data: [{ name: '地块数量', icon: 'circle', }, { name: '地块面积' }]
     },
 
     grid: {
@@ -196,33 +196,33 @@ const option2 = {
             }
         },
     },
-        {
-            type: 'value',
-            min: 0,
-            interval: util.intervalFnc([120, 100, 50, 200, 136, 110, 120, 150, 170, 136, 213]),
-            max: util.maxFnc([120, 100, 50, 200, 136, 110, 120, 150, 170, 136, 213]),
-            splitLine: {
-                show: false,
-                lineStyle: {
-                    type: 'dashed',
-                    color: 'rgba(3, 49, 77, 1)',
-                }
-            },
-            axisLine: {
-                show: true,
-                lineStyle: {
-                    color: 'rgba(3, 49, 77, 1)',
-                },
-                symbol: ['none', 'arrow'],     // 轴线两端箭头，两个值，none表示没有箭头，arrow表示有箭头
-            },
-            axisLabel: {
-                show: true,
-                textStyle: {
-                    color: '#fff',
-                    fontSize: fontSize(0.12),
-                }
-            },
+    {
+        type: 'value',
+        min: 0,
+        interval: util.intervalFnc([120, 100, 50, 200, 136, 110, 120, 150, 170, 136, 213]),
+        max: util.maxFnc([120, 100, 50, 200, 136, 110, 120, 150, 170, 136, 213]),
+        splitLine: {
+            show: false,
+            lineStyle: {
+                type: 'dashed',
+                color: 'rgba(3, 49, 77, 1)',
+            }
         },
+        axisLine: {
+            show: true,
+            lineStyle: {
+                color: 'rgba(3, 49, 77, 1)',
+            },
+            symbol: ['none', 'arrow'],     // 轴线两端箭头，两个值，none表示没有箭头，arrow表示有箭头
+        },
+        axisLabel: {
+            show: true,
+            textStyle: {
+                color: '#fff',
+                fontSize: fontSize(0.12),
+            }
+        },
+    },
 
     ],
     series: [{
@@ -245,8 +245,8 @@ const option2 = {
                 color: new echarts.graphic.LinearGradient(
                     0, 0, 1, 0,
                     [
-                        {offset: 0, color: 'rgba(0, 213, 255, 1)'},
-                        {offset: 1, color: 'rgba(0, 171, 255, 1)'}
+                        { offset: 0, color: 'rgba(0, 213, 255, 1)' },
+                        { offset: 1, color: 'rgba(0, 171, 255, 1)' }
                     ]
                 )
             },
@@ -264,8 +264,8 @@ const option2 = {
                 color: new echarts.graphic.LinearGradient(
                     0, 0, 1, 0,
                     [
-                        {offset: 1, color: 'rgba(0, 121, 182, 0.8)'},
-                        {offset: 1, color: 'rgba(0, 121, 182, 0.8)'}
+                        { offset: 1, color: 'rgba(0, 121, 182, 0.8)' },
+                        { offset: 1, color: 'rgba(0, 121, 182, 0.8)' }
                     ]
                 ),
                 borderWidth: 1,
@@ -290,10 +290,10 @@ const option2 = {
                 offset: 0,
                 color: 'rgba(244, 167, 21, 0.5)'
             },
-                {
-                    offset: 1,
-                    color: 'rgba(244, 167, 21, 0.1)'
-                }
+            {
+                offset: 1,
+                color: 'rgba(244, 167, 21, 0.1)'
+            }
             ])
         },
         emphasis: {
@@ -329,7 +329,7 @@ const option3 = {
             show: true,
             textStyle: {
                 color: '#fff',
-                fontSize:fontChart(1.2),
+                fontSize: fontChart(1.2),
             }
         },
 
@@ -369,46 +369,46 @@ const option3 = {
         }
     },
     series: [
-    //     {
-    //     type: 'scatter',
-    //     symbolSize: 5,
-    //     itemStyle: {
-    //         color: 'rgba(155, 210, 255, 1)'
-    //     },
-    //     silent: true,
-    //     tooltip: {
-    //         show: false
-    //     },
-    //     data: [2000, 1800, 2800, 900, 1600, 2000, 1800, 2800, 900, 1600, 888]
-    // },
-     {
-        // showSymbol:false,
-        type: 'line',
-        symbol: 'circle',
-        symbolSize: 20,
-        symbol: 'image://' + require('./circle.svg'),
-        lineStyle: {
-            color: 'rgba(70, 84, 106, 1)'
-        },
-        itemStyle: {
-            color: 'rgba(3, 127, 255, 1)',
-            borderWidth: 1,
-            borderColor: 'rgba(3, 127, 255, 1)'
-        },
-        label: {
-            show: true,
-            position: 'top',
-            textStyle: {
-                color: 'rgba(192, 219, 239, 1)'
-            }
-        },
+        //     {
+        //     type: 'scatter',
+        //     symbolSize: 5,
+        //     itemStyle: {
+        //         color: 'rgba(155, 210, 255, 1)'
+        //     },
+        //     silent: true,
+        //     tooltip: {
+        //         show: false
+        //     },
+        //     data: [2000, 1800, 2800, 900, 1600, 2000, 1800, 2800, 900, 1600, 888]
+        // },
+        {
+            // showSymbol:false,
+            type: 'line',
+            symbol: 'circle',
+            symbolSize: 20,
+            symbol: 'image://' + require('./circle.svg'),
+            lineStyle: {
+                color: 'rgba(70, 84, 106, 1)'
+            },
+            itemStyle: {
+                color: 'rgba(3, 127, 255, 1)',
+                borderWidth: 1,
+                borderColor: 'rgba(3, 127, 255, 1)'
+            },
+            label: {
+                show: true,
+                position: 'top',
+                textStyle: {
+                    color: 'rgba(192, 219, 239, 1)'
+                }
+            },
 
-        data: [2000, 1800, 2800, 900, 1600, 2000, 1800, 2800, 900, 1600, 888]
-    }]
+            data: [2000, 1800, 2800, 900, 1600, 2000, 1800, 2800, 900, 1600, 888]
+        }]
 
 };
-let maxData  = 2000
-const option4={
+let maxData = 2000
+const option4 = {
     tooltip: {
         trigger: 'axis',
         ...TOOLTIP_STYLE
@@ -460,13 +460,13 @@ const option4={
         itemStyle: {
             normal: {
                 color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                        offset: 0,
-                        color: 'rgba(0, 214, 246, 1)',
-                    },
-                    {
-                        offset: 1,
-                        color: 'rgba(3, 209, 160, 1)',
-                    },
+                    offset: 0,
+                    color: 'rgba(0, 214, 246, 1)',
+                },
+                {
+                    offset: 1,
+                    color: 'rgba(3, 209, 160, 1)',
+                },
                 ]),
             },
         },
@@ -649,7 +649,7 @@ const option4={
 
 }
 // 生成扇形的曲面参数方程，用于 series-surface.parametricEquation
-  function getParametricEquation(startRatio, endRatio, isSelected, isHovered, k, h) {
+function getParametricEquation(startRatio, endRatio, isSelected, isHovered, k, h) {
     // 计算
     const midRatio = (startRatio + endRatio) / 2;
     const startRadian = startRatio * Math.PI * 2;
@@ -678,7 +678,7 @@ const option4={
             max: Math.PI * 2,
             step: Math.PI / 20,
         },
-        x: function(u, v) {
+        x: function (u, v) {
             if (u < startRadian) {
                 return offsetX + Math.cos(startRadian) * (1 + Math.cos(v) * k) * hoverRate;
             }
@@ -687,7 +687,7 @@ const option4={
             }
             return offsetX + Math.cos(u) * (1 + Math.cos(v) * k) * hoverRate;
         },
-        y: function(u, v) {
+        y: function (u, v) {
             if (u < startRadian) {
                 return offsetY + Math.sin(startRadian) * (1 + Math.cos(v) * k) * hoverRate;
             }
@@ -696,7 +696,7 @@ const option4={
             }
             return offsetY + Math.sin(u) * (1 + Math.cos(v) * k) * hoverRate;
         },
-        z: function(u, v) {
+        z: function (u, v) {
             if (u < -Math.PI * 0.5) {
                 return Math.sin(u);
             }
@@ -724,8 +724,8 @@ function getPie3D(pieData, internalDiameterRatio, distance, alpha, pieHeight, op
     const legendData = [];
     const k =
         typeof internalDiameterRatio !== 'undefined' ?
-        (1 - internalDiameterRatio) / (1 + internalDiameterRatio) :
-        1 / 3;
+            (1 - internalDiameterRatio) / (1 + internalDiameterRatio) :
+            1 / 3;
     // 为每一个饼图数据，生成一个 series-surface 配置
     for (let i = 0; i < pieData.length; i += 1) {
         sumValue += pieData[i].value;
@@ -767,7 +767,7 @@ function getPie3D(pieData, internalDiameterRatio, distance, alpha, pieHeight, op
             false,
             k,
             series[i].pieData.value)
-            series[i].parametricEquation = getParametricEquation(
+        series[i].parametricEquation = getParametricEquation(
             series[i].pieData.startRatio,
             series[i].pieData.endRatio,
             false,
@@ -814,22 +814,22 @@ const optionsData = [{
 ];
 const series = getPie3D(optionsData, 0.8, 240, 28, 26, 1.5);
 series.push({
-name: 'pie2d',
-type: 'pie',
-label: {
-    show: false
-},
-labelLine: {
-    show: false
-},
-startAngle: -30, //起始角度，支持范围[0, 360]。
-clockwise: false, //饼图的扇区是否是顺时针排布。上述这两项配置主要是为了对齐3d的样式
-radius: ['90%'],
-center: ['90%'],
-data: optionsData,
-itemStyle: {
-    opacity: 0,
-},
+    name: 'pie2d',
+    type: 'pie',
+    label: {
+        show: false
+    },
+    labelLine: {
+        show: false
+    },
+    startAngle: -30, //起始角度，支持范围[0, 360]。
+    clockwise: false, //饼图的扇区是否是顺时针排布。上述这两项配置主要是为了对齐3d的样式
+    radius: ['90%'],
+    center: ['90%'],
+    data: optionsData,
+    itemStyle: {
+        opacity: 0,
+    },
 });
 const TOOLTIP_STYLE5 = {
     backgroundColor: 'rgba(0, 24, 62, 0.6)',
@@ -902,7 +902,7 @@ const TOOLTIP_STYLE6 = {
     textStyle: {
         color: '#fff',
         fontSize: fontChart(1.4),
-        align:'left' // 内容居左
+        align: 'left' // 内容居左
     },
     axisPointer: {
         type: 'shadow'
@@ -976,12 +976,12 @@ const option6 = {
 
             }
         },
-    }, ],
+    },],
     series: [{
         name: '排污许可证发放量：',
         type: 'bar',
         tooltip: {
-            valueFormatter: function(value) {
+            valueFormatter: function (value) {
                 return value + ' ml';
             }
         },
@@ -1013,7 +1013,7 @@ const option6 = {
         data: [
             200, 490, 700, 232, 256, 767, 136, 162, 326, 200, 644, 330
         ]
-    }, ]
+    },]
 }
 
-export { option1 ,option2,option3,option4,option5,option6}
+export { option1, option2, option3, option4, option5, option6 }

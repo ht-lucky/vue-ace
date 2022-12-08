@@ -1,4 +1,5 @@
 import {util} from "../../common/util";
+const circle = require('./icon-echarts-circle.png')
 const echarts = require('echarts');
 const TOOLTIP_STYLE = {
     backgroundColor: 'rgba(0, 24, 62, 0.6)',
@@ -306,272 +307,208 @@ const option3 =  {
         }
     ]
 };
-const option5 = {
-    title: {
-        text: '',
-    },
-    tooltip: {
-        ...TOOLTIP_STYLE, ...{
-            trigger: 'axis',
-        }
-    },
-    grid: {
-        left: '40',
-        right: '0',
-        bottom: '30',
-        top: '24',
-    },
-    yAxis: {
-        splitLine: { // 分隔线
-            show: true, // 默认显示，属性show控制显示与否
-            lineStyle: { // 属性lineStyle（详见lineStyle）控制线条样式
-                color: 'rgba(3, 49, 77, 1)',
-                width: 1,
-                type: 'dashed'
+const getIndicatorsEcharts4 = () => {
+    return {
+        title: {
+            text: '',
+        },
+        tooltip: {
+            ...TOOLTIP_STYLE, ...{
+                trigger: 'axis',
+                formatter: (params) => {
+                    let content = ''
+                    params.forEach((item, index) => {
+                        if(item.seriesName) {
+                            if(index === 0) {
+                                content += `<div>${item.name}</div>`
+                            }
+                            content += `<div>${item.marker}${item.seriesName}<span style="margin-left: 20px;">${item.value}</span></div>`
+                        }
+                    });
+                    return content
+                }
             }
         },
-        axisLine: {
-            show: false,
-            lineStyle: {
-                color: 'rgba(3, 49, 77, 1)',
-            },
-        },
-        axisLabel: {
-            show: true,
+        legend: {
+            icon: 'rect',
+            top: 0,
+            right: 0,
+            itemWidth: 8,
+            itemHeight: 8,
+            padding: 0,
             textStyle: {
+                color: '#BFD1FB',
+                fontSize: fontSize(0.14),
+                padding: [2, 0, 0, 0],
+            },
+            data: [{
+                name: '供应总量（公顷）',
+                itemStyle: {
+                    color: 'rgba(251, 255, 3, 1)'
+                }
+            }, {
+                name: '同比增速（%）',
+                itemStyle: {
+                    color: '#04D99E'
+                }
+            }],
+        },
+        grid: {
+            left: '40',
+            right: '0',
+            bottom: '30',
+            top: '24',
+        },
+        yAxis: {
+            splitLine: { // 分隔线
+                show: true, // 默认显示，属性show控制显示与否
+                lineStyle: { // 属性lineStyle（详见lineStyle）控制线条样式
+                    color: 'rgba(3, 49, 77, 1)',
+                    width: 1,
+                    type: 'dashed'
+                }
+            },
+            axisLine: {
+                show: false,
+                lineStyle: {
+                    color: 'rgba(3, 49, 77, 1)',
+                },
+            },
+            axisLabel: {
+                show: true,
                 color: 'rgba(112, 151, 215, 1)',
                 fontSize: fontSize(0.12),
-            }
+            },
         },
-    },
-    xAxis: {
-        axisLabel: {
-            show: true,
-            textStyle: {
+        xAxis: {
+            axisLabel: {
+                show: true,
                 color: 'rgba(124, 147, 200, 1)',
                 fontSize: fontSize(0.12),
-            }
-        },
-        axisLine: {
-            show: true,
-            lineStyle: {
-                color: 'rgba(3, 49, 77, 1)',
             },
-        },
-        data: ['杭州', '宁波', '温州', '绍兴', '嘉兴', '湖州', '金华', '台州', '衢州', '丽水', '舟山']
-    },
-    series: [
-        {
-            // 上半截柱子
-            name: '2019',
-            type: 'bar',
-            barWidth: '18',
-            barGap: '-100%',
-            z: 0,
-            itemStyle: {
-                //lenged文本
-                opacity: 1,
-                color: function (params) {
-                    return new echarts.graphic.LinearGradient(
-                        0,
-                        0,
-                        1,
-                        0,
-                        [
-                            {
-                                offset: 0,
-                                color: 'rgba(51,80,165,0.4)', // 0% 处的颜色
-                            },
-                            {
-                                offset: 1,
-                                color: 'rgba(51,80,165,0.4)', // 100% 处的颜色
-                            },
-                        ],
-                        false
-                    );
-                },
-            },
-            data: [100, 100, 100, 100, 100, {
-                value: -100,
-                itemStyle: {
-                    color: 'rgba(255, 181, 131, 0.1300)'
-                }
-            }, {
-                value: -100,
-                itemStyle: {
-                    color: 'rgba(255, 181, 131, 0.1300)'
-                }
-            }],
-        },
-        {
-            //最上面圆片
-            name: '',
-            type: 'pictorialBar',
-            symbolSize: [18, 4],
-            symbolOffset: [0, -2],
-            z: 3,
-            symbolPosition: 'end',
-            itemStyle: {
-                color: '#224C94',
-                opacity: 1,
-            },
-            data: [100, 100, 100, 100, 100, {
-                value: -100,
-                itemStyle: {
-                    color: 'rgba(44, 41, 65, 1)'
-                }
-            }, {
-                value: -100,
-                itemStyle: {
-                    color: 'rgba(44, 41, 65, 1)'
-                }
-            }],
-        },
-        {
-            // 下半截柱子
-            name: '2020',
-            type: 'bar',
-            barWidth: 18,
-            barGap: '-100%',
-            itemStyle: {
-                opacity: 1,
-                color: function (params) {
-                    if(params.data < 0) {
-                        return new echarts.graphic.LinearGradient(
-                            0,
-                            1,
-                            0,
-                            0,
-                            [
-                                {
-                                    offset: 0,
-                                    color: 'rgba(244, 176, 128, 1)', // 0% 处的颜色
-                                },
-                                {
-                                    offset: 1,
-                                    color: 'rgba(244, 176, 128, 0)', // 100% 处的颜色
-                                },
-                            ],
-                            false
-                        );
-                    } else {
-                        return new echarts.graphic.LinearGradient(
-                            0,
-                            0,
-                            0,
-                            1,
-                            [
-                                {
-                                    offset: 0,
-                                    color: '#21DDFC', // 0% 处的颜色
-                                },
-                                {
-                                    offset: 1,
-                                    color: 'rgba(21,91,253,0)', // 100% 处的颜色
-                                },
-                            ],
-                            false
-                        );
-                    }
-                },
-            },
-            data: [32.1, 20.2, 9.5, 4.2, 20, -50.3, -30],
-        },
-        {
-            //数据圆片
-            name: '',
-            type: 'pictorialBar',
-            symbolSize: [18, 4],
-            symbolOffset: [0, -2],
-            z: 3,
-            itemStyle: {
-                color: 'rgba(185, 243, 255, 1)'
-            },
-            symbolPosition: 'end',
-            data: [
-                32.1, 20.2, 9.5, 4.2, 20,
-                {
-                    value: -50.3,
-                    symbolOffset: [0, 2],
-                    itemStyle: {
-                        color: 'rgba(255, 203, 168, 1)'
-                    },
-                },
-                {
-                    value: -30,
-                    symbolOffset: [0, 2],
-                    itemStyle: {
-                        color: 'rgba(255, 203, 168, 1)'
-                    },
-                }
-            ],
-            label: {
+            axisLine: {
                 show: true,
-                position: 'left',
-                distance: -770,
-                formatter: '{c}%'
+                lineStyle: {
+                    color: 'rgba(3, 49, 77, 1)',
+                },
             },
+            data: ['杭州', '宁波', '温州', '绍兴', '嘉兴', '湖州', '金华', '台州', '衢州', '丽水', '舟山']
         },
-        {
-            //最底下圆片
-            name: '',
-            type: 'pictorialBar',
-            symbolSize: [18, 4],
-            symbolOffset: [0, 0],
-            z: 3,
-            itemStyle: {
-                opacity: 1,
-                color: 'rgba(26, 51, 124, 1)'
+        series: [
+            {
+                // 上半截柱子
+                name: '',
+                type: 'bar',
+                barWidth: '18',
+                barGap: '-100%',
+                z: 0,
+                itemStyle: {
+                    //lenged文本
+                    opacity: 1,
+                    color: function (params) {
+                        return new echarts.graphic.LinearGradient(
+                            0,
+                            0,
+                            1,
+                            0,
+                            [
+                                {
+                                    offset: 0,
+                                    color: 'rgba(51, 80, 165, 0.4000)', // 0% 处的颜色
+                                },
+                                {
+                                    offset: 1,
+                                    color: 'rgba(51, 80, 165, 0.4000)', // 100% 处的颜色
+                                },
+                            ],
+                            false
+                        );
+                    },
+                },
+                data: [50, 50, 50, 50, 50],
             },
-            symbolPosition: 'end',
-            data: [
-                {
-                    value: 1,
-                    itemStyle: {
-                        color: 'rgba(26, 51, 124, 1)'
-                    }
+            {
+                //最上面圆片
+                name: '',
+                type: 'pictorialBar',
+                symbolSize: [18, 4],
+                symbolOffset: [0, -2],
+                z: 3,
+                symbolPosition: 'end',
+                itemStyle: {
+                    color: 'rgba(24, 36, 69, 1)',
+                    opacity: 1,
                 },
-                {
-                    value: 1,
-                    itemStyle: {
-                        color: 'rgba(26, 51, 124, 1)'
-                    }
+                data: [50, 50, 50, 50, 50],
+            },
+            {
+                // 下半截柱子
+                name: '同比增速（%）',
+                type: 'bar',
+                barWidth: 18,
+                barGap: '-100%',
+                itemStyle: {
+                    //lenged文本
+                    opacity: 1,
+                    color: function (params) {
+                        return new echarts.graphic.LinearGradient(
+                            0,
+                            0,
+                            0,
+                            1,
+                            [
+                                {
+                                    offset: 0,
+                                    color: '#04D99E', // 0% 处的颜色
+                                },
+                                {
+                                    offset: 1,
+                                    color: 'rgba(0, 255, 169, 0)', // 100% 处的颜色
+                                },
+                            ],
+                            false
+                        );
+                    },
                 },
-                {
-                    value: 1,
-                    itemStyle: {
-                        color: 'rgba(26, 51, 124, 1)'
-                    }
+                data: [32.1, 20.2, 9.5, 4.2, 2.3],
+            },
+            {
+                //数据圆片
+                name: '',
+                type: 'pictorialBar',
+                symbolSize: [18, 4],
+                symbolOffset: [0, -2],
+                z: 3,
+                itemStyle: {
+                    opacity: 1,
+                    color: 'rgba(185, 243, 255, 1)'
                 },
-                {
-                    value: 1,
-                    itemStyle: {
-                        color: 'rgba(26, 51, 124, 1)'
-                    }
+                symbolPosition: 'end',
+                data: [32.1, 20.2, 9.5, 4.2, 2.3],
+                label: {
+                    show: true,
+                    position: 'left',
+                    distance: -770,
+                    formatter: '{c}%'
                 },
-                {
-                    value: 1,
-                    itemStyle: {
-                        color: 'rgba(26, 51, 124, 1)'
-                    }
+            },
+            {
+                name: '供应总量（公顷）',
+                type: 'line',
+                smooth: false,
+                symbol: 'image://' + circle,
+                symbolSize: 18,
+                itemStyle: {
+                    color: 'rgba(251, 255, 3, 1)',
                 },
-                {
-                    value: 1,
-                    itemStyle: {
-                        color: 'rgba(116, 96, 107, 1)'
-                    }
-                },
-                {
-                    value: 1,
-                    itemStyle: {
-                        color: 'rgba(116, 96, 107, 1)'
-                    }
-                }
-            ],
-        },
-    ],
-};
+                data: [40, 6, 7, 20, 10, 20, 20, 20, 10]
+            }
+        ],
+    }
+}
 
+const option4 = getIndicatorsEcharts4()
+const option5 =''
 const option6 = 
     {
         tooltip: {
