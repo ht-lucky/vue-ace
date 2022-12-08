@@ -6,8 +6,8 @@
             <div class="box">21<div id="chartsId4_3"></div> </div>  
         </div>
         <div class="wrap">
-            <div class="box">22<div id="chartsId4"></div></div>  
-            <div class="box">23<div id="chartsId5"></div></div>  
+            <div class="box">22<div id="chartsId4_4"></div></div>  
+            <div class="box">23<div id="chartsId4_5"></div></div>  
             <div class="box">24 <div id="chartsId6"></div></div>  
         </div>
     </div>
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import {option1,option2,option3,option5,option6} from './echarts'
+import {option1,option2,option3,option4,option5,option6} from './echarts'
 export default {
     components:{
     },
@@ -52,9 +52,13 @@ export default {
             // 第3个图表
             this.chart3 = this.$echarts.init(document.getElementById('chartsId4_3'));
             this.chart3.setOption(option3);
+            // 第4个图表
+            this.chart4 = this.$echarts.init(document.getElementById('chartsId4_4'));
+            this.chart4.setOption(option4);
             // 第5个图表
-            this.chart5 = this.$echarts.init(document.getElementById('chartsId5'));
-            this.chart5.setOption(option5);
+            this.chart5 = this.$echarts.init(document.getElementById('chartsId4_5'));
+            let option4_5 =option5() 
+            this.chart5.setOption(option4_5);
             // 第6个图表
             this.chart6 = this.$echarts.init(document.getElementById('chartsId6'));
             this.chart6.setOption(option6);
@@ -82,7 +86,7 @@ export default {
     justify-content: space-evenly;
     // padding-top: 100px;
     padding-bottom: 50px;
-    #chartsId4_1,#chartsId4_2,#chartsId4_3,#chartsId5,#chartsId6{
+    #chartsId4_1,#chartsId4_2,#chartsId4_4,#chartsId4_3,#chartsId4_5,#chartsId6{
         width: 540px;
         height: 378px;
     }
