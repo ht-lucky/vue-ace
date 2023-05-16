@@ -1,14 +1,14 @@
 <template>
     <div>
         <div class="wrap">
-            <div class="box">19<div id="chartsId4_1"></div> </div>  
-            <div class="box">20<div id="chartsId4_2"></div> </div>  
-            <div class="box">21<div id="chartsId4_3"></div> </div>  
+            <div class="box">25<div id="chartsId5_1"></div> </div>  
+            <div class="box">26<div id="chartsId5_2"></div> </div>  
+            <div class="box">27<div id="chartsId5_3"></div> </div>  
         </div>
         <div class="wrap">
-            <div class="box">22<div id="chartsId4_4"></div></div>  
-            <div class="box">23<div id="chartsId4_5"></div></div>  
-            <div class="box">24 <div id="chartsId4_6"></div></div>  
+            <div class="box">28<div id="chartsId5_4"></div></div>  
+            <div class="box">29<div id="chartsId5_5"></div></div>  
+            <div class="box">30 <div id="chartsId5_6"></div></div>  
         </div>
     </div>
     
@@ -43,24 +43,24 @@ export default {
             // this.chart1.setOption(option1);
 
             // 第1个图表
-            this.chart1 = this.$echarts.init(document.getElementById('chartsId4_1'));
+            this.chart1 = this.$echarts.init(document.getElementById('chartsId5_1'));
             this.chart1.setOption(option1);
             // 第2个图表
-            this.chart2 = this.$echarts.init(document.getElementById('chartsId4_2'));
+            this.chart2 = this.$echarts.init(document.getElementById('chartsId5_2'));
             this.chart2.setOption(option2);
 
             // 第3个图表
-            this.chart3 = this.$echarts.init(document.getElementById('chartsId4_3'));
+            this.chart3 = this.$echarts.init(document.getElementById('chartsId5_3'));
             this.chart3.setOption(option3);
             // 第4个图表
-            this.chart4 = this.$echarts.init(document.getElementById('chartsId4_4'));
+            this.chart4 = this.$echarts.init(document.getElementById('chartsId5_4'));
             this.chart4.setOption(option4);
             // 第5个图表
-            this.chart5 = this.$echarts.init(document.getElementById('chartsId4_5'));
+            this.chart5 = this.$echarts.init(document.getElementById('chartsId5_5'));
             // let option4_5 =setOption(option5);
             this.chart5.setOption(option5);
             // 第6个图表
-            this.chart6 = this.$echarts.init(document.getElementById('chartsId4_6'));
+            this.chart6 = this.$echarts.init(document.getElementById('chartsId5_6'));
             this.chart6.setOption(option6);
 
 
@@ -86,7 +86,7 @@ export default {
     justify-content: space-evenly;
     // padding-top: 100px;
     padding-bottom: 50px;
-    #chartsId4_1,#chartsId4_2,#chartsId4_4,#chartsId4_3,#chartsId4_5,#chartsId4_6{
+    #chartsId5_1,#chartsId5_2,#chartsId5_4,#chartsId5_3,#chartsId5_5,#chartsId5_6{
         width: 540px;
         height: 378px;
     }

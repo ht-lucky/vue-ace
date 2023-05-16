@@ -1,4 +1,4 @@
-import {util} from "../../common/util";
+import { util } from "../../common/util";
 const circle = require('./icon-echarts-circle.png')
 const echarts = require('echarts');
 const TOOLTIP_STYLE = {
@@ -38,14 +38,14 @@ const TOOLTIP_STYLE1 = {
     extraCssText: 'box-shadow: 0px 0px 14px 0px rgba(63, 129, 255, 0.8);color: #fff',
     textStyle: {
         color: '#fff',
-        fontSize:fontChart(1.4),
+        fontSize: fontChart(1.4),
     },
     axisPointer: {
         type: 'shadow'
     },
     formatter(e, v) {
         if (e.name) {
-            return e.marker + e.name + ": " + e.value + "<br/>"  + '  ' +  "占比 " + e.percent + '%'
+            return e.marker + e.name + ": " + e.value + "<br/>" + '  ' + "占比 " + e.percent + '%'
         }
     },
 }
@@ -65,61 +65,61 @@ const option1 = {
     },
 
     series: [{
-            name: '产业用电量',
-            type: 'pie',
-            radius: ['50%', '85%'],
-            avoidLabelOverlap: false,
-            itemStyle: {
-                normal: {
-                    borderWidth: 5,
-                    borderColor: "#0B162F"
-                    //颜色和背景色一致
-                },
+        name: '产业用电量',
+        type: 'pie',
+        radius: ['50%', '85%'],
+        avoidLabelOverlap: false,
+        itemStyle: {
+            normal: {
+                borderWidth: 5,
+                borderColor: "#0B162F"
+                //颜色和背景色一致
             },
-
-            label: {
-                fontWeight: 400,
-                color: '#A8B7E0',
-            },
-            data: [
-                { value: 33, name: '二氧化硫排放总量' },
-                { value: 68, name: '工业废气排放总量' },
-                { value: 12, name: '废水排放总量' },
-                { value: 21, name: '氨氮排放量' },
-                { value: 56, name: '氮氧化物排放量' },
-                { value: 76, name: '烟(粉)尘排放总量' },
-
-            ]
         },
-        {
 
-            type: 'pie',
-            radius: ['35%', '45%'],
-            avoidLabelOverlap: false,
-            color: 'rgba(35, 80, 133, 0.2700)',
+        label: {
+            fontWeight: 400,
+            color: '#A8B7E0',
+        },
+        data: [
+            { value: 33, name: '二氧化硫排放总量' },
+            { value: 68, name: '工业废气排放总量' },
+            { value: 12, name: '废水排放总量' },
+            { value: 21, name: '氨氮排放量' },
+            { value: 56, name: '氮氧化物排放量' },
+            { value: 76, name: '烟(粉)尘排放总量' },
+
+        ]
+    },
+    {
+
+        type: 'pie',
+        radius: ['35%', '45%'],
+        avoidLabelOverlap: false,
+        color: 'rgba(35, 80, 133, 0.2700)',
+        label: {
+            show: false,
+            position: 'center'
+        },
+        itemStyle: {
+            borderColor: '#0c1932',
+            borderWidth: 2
+        },
+        emphasis: {
             label: {
                 show: false,
-                position: 'center'
-            },
-            itemStyle: {
-                borderColor: '#0c1932',
-                borderWidth: 2
-            },
-            emphasis: {
-                label: {
-                    show: false,
-                }
-            },
-            labelLine: {
-                show: false
-            },
-            data: [
-                { value: 100 },
-                { value: 33 },
-                { value: 33 },
+            }
+        },
+        labelLine: {
+            show: false
+        },
+        data: [
+            { value: 100 },
+            { value: 33 },
+            { value: 33 },
 
-            ]
-        }
+        ]
+    }
     ]
 };
 const option2 = {
@@ -167,7 +167,7 @@ const option2 = {
         },
     }],
     yAxis: [{
-        interval: util.intervalFnc([ 100, 90, 60, 26, 28, 70, 175, 182, 487, 188, 60, 23, 200, 490, 700, 232, 256, 767, 136, 162, 326, 200, 644, 330]),
+        interval: util.intervalFnc([100, 90, 60, 26, 28, 70, 175, 182, 487, 188, 60, 23, 200, 490, 700, 232, 256, 767, 136, 162, 326, 200, 644, 330]),
         max: util.maxFnc([100, 90, 60, 26, 28, 70, 175, 182, 487, 188, 60, 23, 200, 490, 700, 232, 256, 767, 136, 162, 326, 200, 644, 330]),
         type: 'value',
         splitLine: { // 分隔线
@@ -192,7 +192,7 @@ const option2 = {
 
             }
         },
-    }, ],
+    },],
     series: [{
         name: '生态环境投资',
         type: 'bar',
@@ -203,7 +203,7 @@ const option2 = {
                 color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
                     offset: 1,
                     color: "rgba(72, 246, 255, 1)" // 100% 处的颜色
-                },{
+                }, {
                     offset: 0,
                     color: "rgba(126, 251, 255, 0.1)" // 0% 处的颜色
                 }]),
@@ -215,31 +215,31 @@ const option2 = {
             200, 490, 700, 232, 256, 767, 136, 162, 326, 200, 644, 330
         ]
     },
-        {
-            name: '公共设施投资',
-            type: 'bar',
-            color: 'rgba(96, 183, 255, 1)',
-            barWidth: fontSize(0.1),
-            //设置柱状图渐变颜色
-            itemStyle: {
-                normal: {
-                    color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
-                        offset: 1,
-                        color: "rgba(96, 183, 255, 1)" // 100% 处的颜色
-                    },{
-                        offset: 0,
-                        color: "rgba(96, 183, 255, 0)" // 0% 处的颜色
-                    }])
-                }
-            },
-            data: [
-                100, 90, 60, 26, 28, 70, 175, 182, 487, 188, 60, 23
-            ]
+    {
+        name: '公共设施投资',
+        type: 'bar',
+        color: 'rgba(96, 183, 255, 1)',
+        barWidth: fontSize(0.1),
+        //设置柱状图渐变颜色
+        itemStyle: {
+            normal: {
+                color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
+                    offset: 1,
+                    color: "rgba(96, 183, 255, 1)" // 100% 处的颜色
+                }, {
+                    offset: 0,
+                    color: "rgba(96, 183, 255, 0)" // 0% 处的颜色
+                }])
+            }
         },
+        data: [
+            100, 90, 60, 26, 28, 70, 175, 182, 487, 188, 60, 23
+        ]
+    },
     ]
 }
 
-const option3 =  {
+const option3 = {
     color: ['rgba(255, 142, 238, 1)', 'rgba(46, 154, 245, 1)', 'rgba(67, 97, 238, 1)', 'rgba(58, 13, 163, 1)',
         'rgba(114, 10, 183, 1)', 'rgba(247, 36, 133, 1)', 'rgba(254, 122, 91, 1)', 'rgba(255, 136, 0, 1)',
         'rgba(255, 209, 0, 1)', 'rgba(0, 216, 154, 1)', 'rgba(77, 88, 96, 1)'],
@@ -318,8 +318,8 @@ const getIndicatorsEcharts4 = () => {
                 formatter: (params) => {
                     let content = ''
                     params.forEach((item, index) => {
-                        if(item.seriesName) {
-                            if(index === 0) {
+                        if (item.seriesName) {
+                            if (index === 0) {
                                 content += `<div>${item.name}</div>`
                             }
                             content += `<div>${item.marker}${item.seriesName}<span style="margin-left: 20px;">${item.value}</span></div>`
@@ -508,58 +508,313 @@ const getIndicatorsEcharts4 = () => {
 }
 
 const option4 = getIndicatorsEcharts4()
-const option5 =''
-const option6 = 
-    {
-        tooltip: {
-            trigger: 'item',
-            ...TOOLTIP_STYLE
+const option5 = {
+    tooltip: {
+        trigger: 'item',
+        axisPointer: {
+            type: 'shadow'
         },
-        legend: {
-            icon: 'rect',
-            itemWidth: fontChart(0.7),
-            itemHeight: fontChart(0.7),
-            right: '0%',
-            itemGap: 18,
-            orient: 'vertical', //垂直显示
-            y: 'center', //延Y轴居中
-            textStyle: {
-                fontSize: fontChart(1.4),
-                color: '#fff'
+        ...TOOLTIP_STYLE
+    },
+    color: '#9ED0FF',
+    grid: {
+        top: '10%',
+        left: '10%',
+        right: '10%',
+        bottom: '10%',
+        containLabel: true
+    },
+    xAxis: {
+        show: true,
+        axisLabel: {
+            formatter: '{value} ',
+            show: true,
+            color: '#fff',
+
+        },
+
+        splitLine: {
+            show: true,
+            lineStyle: {
+                type: 'dashed',
+                color: 'rgba(3, 49, 77, 1)',
+            }
+        },
+        axisLine: {
+            lineStyle: {
+                color: 'rgba(3, 49, 77, 1)',
             },
+            show: true
+        }
+    },
+    yAxis: {
+
+        splitLine: {
+            show: true,
+            lineStyle: {
+                type: 'dashed',
+                color: 'rgba(3, 49, 77, 1)',
+            }
         },
-
-        color: ['#0263FF', '#FF7723', '#8E30FF', '#EBD662', '#C14E36', '#265FD0', '#177FBE', '#C7B759'],
-
-        grid: {
-            left: '0',
-            right: '1000',
-            bottom: '40',
-            top: '50',
+        type: 'category',
+        // inverse: false, // 倒叙
+        axisLabel: {
+            color: '#fff',
+            formatter: (val) => {
+                return `${val}`;
+            }
         },
+        axisLine: {
+            show: false // 轴线
+        },
+        axisTick: {
+            show: false // 刻度线
+        },
+        data: ['事项1', '事项2', '事项3', '事项4', '事项5', '事项6']
+    },
 
-        series: [{
-            type: 'pie',
-            radius: ['40%', '70%'],
-            center: ['30%', '47%'], //性设置图的上下左右的位置
-            avoidLabelOverlap: false,
+    series: [
+        {
+            //最左面圆片
+            name: 'leftCircle',
+            type: 'pictorialBar',
+            symbolSize: [6, 6],
+            symbolOffset: [1, 0],
+            z: 3,
+            symbolPosition: 'end',
+            itemStyle: {
+                color: '#224C94',
+                opacity: 1
+            },
+            data: [0, 10, 30, 5, 10, 0]
+        },
+        {
+            //最右面圆片
+            name: 'rightCircle',
+            type: 'pictorialBar',
+            symbolSize: [6, 6],
+            symbolOffset: [1, 0],
+            z: 3,
+            symbolPosition: 'end',
+            itemStyle: {
+                color: '#224C94',
+                opacity: 1
+            },
+            data: [5, 30, 30, 15, 33, 23]
+        },
+        {
+            barWidth: 5,
+            name: 'Placeholder',
+            type: 'bar',
+            stack: 'Total',
+            itemStyle: {
+                borderColor: 'transparent',
+                color: 'transparent'
+            },
+            emphasis: {
+                itemStyle: {
+                    borderColor: 'transparent',
+                    color: 'transparent'
+                }
+            },
+            tooltip: { show: false },
+            data: [0, 10, 30, 5, 10, 0]
+        },
+        {
+            name: 'Life Cost',
+            type: 'bar',
+            stack: 'Total',
             label: {
-                show: false,
-                position: 'center'
-            },
-            labelLine: {
-                show: false
+                show: true,
+                position: ['10', '-270%'],
+                offset: [0, 0],
+                textStyle: {
+                    color: '#fff',
+                    fontSize: fontChart(1.2),
+                },
+                formatter: function (val) {
+                    return (
+                        '办件量：' +
+                        `{a|${val.value}} ` +
+                        ' 平均用时：' +
+                        `{a|${val.data.arag}} `
+                    );
+                    // return  val.seriesName
+                },
+                rich: {
+                    a: {
+                        color: '#FF5B2F'
+                    }
+                }
             },
             data: [
-                { value: 1048, name: '居住用地' },
-                { value: 735, name: '公共管理与公共服务设施用地A' },
-                { value: 580, name: '商业服务业设施用地' },
-                { value: 484, name: '行政办公用地' },
-                { value: 300, name: '工业用地' }
+                {
+                    value: 5,
+                    arag: 3,
+                    myData: '事项1' // 传入数据，变量名自己定
+                },
+                {
+                    value: 20,
+                    arag: 3,
+                    myData: '事项2'
+                },
+                {
+                    value: 36,
+                    arag: 3,
+                    myData: '事项3'
+                },
+                {
+                    value: 10,
+                    arag: 3,
+                    myData: '事项4'
+                },
+                {
+                    value: 23,
+                    arag: 3,
+                    myData: '事项5'
+                },
+                {
+                    value: 23,
+                    arag: 3,
+                    myData: '事项6'
+                },
             ]
-        }]
-    }
+        }
+    ]
+};
+var listData = [
+    {value: 10, name: '18岁以下'},
+    {value: 5, name: '18-24岁'},
+    {value: 8, name: '25-34岁'},
+    {value: 2, name: '35-44岁'},
+    {value: 83, name: '45-54岁'},
+    {value: 22, name: '55-64岁'},
+    {value: 22, name: '65岁以上'},
+];
+const option6 = {
+    // legend: {
+    //     show: true,
+    //     data: ['系列一'],
+    //     textStyle: {
+    //         color: '#fff'
+    //     }
+    // },
+    grid: {
+        top: '2%',
+        left: '25%',
+        right: '5%',
+        bottom: '2%'
+    },
+    tooltip: {
+        show: true,
+        formatter: params => {
+            console.log(params)
+            if (params.componentSubType === 'bar' && params.seriesName !== '背景条') {
+                return `${params.seriesName}<br />${params.data.name}：${params.data.value}`
+            } else {
+                return ''
+            }
+        }
+    },
+    xAxis: {
+        splitLine: {
+            show: false,
+        },
+        axisLabel: {
+            margin: 10,
+            show: false,
+        },
+        axisTick: {
+            show: false,
+        },
+        axisLine: {
+            show: false,
+        },
+    },
+    yAxis: {
+        type: 'category',
+        splitLine: {
+            show: false,
+        },
+        axisLine: {
+            show: false
+        },
+        axisLabel: {
+            formatter: (name, index) => {
+                // console.log(name, index)
+                return `{name|${name}}`;
+            },
+            rich: {
+                name: {
+                    fontSize: 14,
+                    align: 'left',
+                    color: 'rgba(102, 102, 102, 1)',
+                    fontFamily: 'MicrosoftYaHei',
+                },
+            },
+        },
+        axisTick: {
+            show: false
+        },
+        data: listData.map(item => item.name)
+    },
+    series: [
+        {
+            // 真实数值条形图
+            name: "年龄分布",
+            type: 'bar', //pictorialBar
+            barWidth: 16,
+            itemStyle: {
+                borderWidth: 0,
+                color: {
+                    x: 0,
+                    y: 0,
+                    x2: 1,
+                    y2: 0,
+                    colorStops: [{
+                        offset: 0,
+                        color: 'rgba(255, 172, 89, 1)'
+                    }, {
+                        offset: 1,
+                        color: 'rgba(255, 67, 0, 1)'
+                    }]
+                }
+            },
+            data: listData,
+            z: 1
+        },
+        {
+            //辅助方格图形
+            name: "辅助值",
+            type: 'pictorialBar',
+            barWidth: 18,
+            symbol: 'rect',
+            symbolMargin: '80%',
+            symbolSize: ['15%', '100%'],
+            symbolOffset: ['150%', '0%'],
+            symbolRepeat: true,
+            itemStyle: {
+                color: '#041437',
+            },
+            data: [100, 100, 100, 100, 100, 100, 100],
+            z: 2
+        },
+        {
+            // 辅助背景图形
+            name: "背景条",
+            type: 'bar', //pictorialBar
+            barWidth: 16,
+            barGap: '-100%',
+            itemStyle: {
+                borderWidth: 0,
+                color: '#9ED0FF',
+            },
+            data: [100, 100, 100, 100, 100, 100, 100],
+            z: 0
+        },
+    ]
+};
 
 
 
-export { option1 ,option2,option3,option5,option6}
+export { option1, option2, option3, option4, option5, option6 }

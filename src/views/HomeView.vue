@@ -4,6 +4,7 @@
     <echarts7_12></echarts7_12>
     <echarts13_18></echarts13_18>
     <echarts19_24></echarts19_24>
+    <echart25_30></echart25_30>
   </div>
 </template>
 
@@ -13,6 +14,7 @@ import echarts1_6 from './echarts1_6/index.vue'
 import echarts7_12 from './echarts7_12/index.vue'
 import echarts13_18 from './echarts13_18/index.vue'
 import echarts19_24 from './echarts19_24/index.vue'
+import echart25_30 from './echarts25_30/index.vue'
 
 export default {
   name: 'HomeView',
@@ -20,7 +22,8 @@ export default {
     echarts1_6,
     echarts7_12,
     echarts13_18,
-    echarts19_24
+    echarts19_24,
+    echart25_30
   }
 }
 </script>
