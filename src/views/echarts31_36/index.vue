@@ -1,19 +1,19 @@
 <template>
     <div>
         <div class="wrap">
-            <div class="box">25<div id="chartsId5_1"></div>
+            <div class="box">25<div id="chartsId6_1"></div>
             </div>
-            <div class="box">26<div id="chartsId5_2"></div>
+            <div class="box">26<div id="chartsId6_2"></div>
             </div>
-            <div class="box">27<div id="chartsId5_3"></div>
+            <div class="box">27<div id="chartsId6_3"></div>
             </div>
         </div>
         <div class="wrap">
-            <div class="box">28<div id="chartsId5_4"></div>
+            <div class="box">28<div id="chartsId6_4"></div>
             </div>
-            <div class="box">29<div id="chartsId5_5"></div>
+            <div class="box">29<div id="chartsId6_5"></div>
             </div>
-            <div class="box">30 <div id="chartsId5_6"></div>
+            <div class="box">30 <div id="chartsId6_6"></div>
             </div>
         </div>
     </div>
@@ -39,31 +39,29 @@ export default {
         initEcharts() {
 
             // 第1个图表
-            this.chart1 = this.$echarts.init(document.getElementById('chartsId5_1'));
+            this.chart1 = this.$echarts.init(document.getElementById('chartsId6_1'));
             this.chart1.setOption(option1);
             // 第2个图表
-            this.chart2 = this.$echarts.init(document.getElementById('chartsId5_2'));
+            this.chart2 = this.$echarts.init(document.getElementById('chartsId6_2'));
             this.chart2.setOption(option2);
 
             // 第3个图表
-            this.chart3 = this.$echarts.init(document.getElementById('chartsId5_3'));
+            let _markPoint2 = [{ value: 'NO.1',xAxis: 0, yAxis: 400, symbol: 'image://' + _symbol,
+                },{value: 'NO.1',xAxis: 1, yAxis: 400, symbol: 'image://' + _symbol},
+                    {value: 'NO.1', xAxis: 2, yAxis: 400, symbol: 'image://' + _symbol,
+                    },{value: 'NO.1', xAxis: 3, yAxis: 400, symbol: 'image://' + _symbol,},
+                    {value: 'NO.1', xAxis: 4, yAxis: 400, symbol: 'image://' + _symbol,}];
+                    option3.series[0].markPoint.data =  _markPoint2 ;
+            this.chart3 = this.$echarts.init(document.getElementById('chartsId6_3'));
             this.chart3.setOption(option3);
             // 第4个图表
-            this.chart4 = this.$echarts.init(document.getElementById('chartsId5_4'));
+            this.chart4 = this.$echarts.init(document.getElementById('chartsId6_4'));
             this.chart4.setOption(option4);
             // 第5个图表
-            this.chart5 = this.$echarts.init(document.getElementById('chartsId5_5'));
-            let _markPoint = [{
-                value: 'NO.1', xAxis: 0, yAxis: 400, symbol: 'image://' + _symbol,
-            }, { value: 'NO.1', xAxis: 1, yAxis: 400, symbol: 'image://' + _symbol },
-            {
-                value: 'NO.1', xAxis: 2, yAxis: 400, symbol: 'image://' + _symbol,
-            }, { value: 'NO.1', xAxis: 3, yAxis: 400, symbol: 'image://' + _symbol, },
-            { value: 'NO.1', xAxis: 4, yAxis: 400, symbol: 'image://' + _symbol, }];
-            option5.series[0].markPoint.data = _markPoint;
+            this.chart5 = this.$echarts.init(document.getElementById('chartsId6_5'));
             this.chart5.setOption(option5);
             // 第6个图表
-            this.chart6 = this.$echarts.init(document.getElementById('chartsId5_6'));
+            this.chart6 = this.$echarts.init(document.getElementById('chartsId6_6'));
             this.chart6.setOption(option6);
 
 
@@ -90,12 +88,12 @@ export default {
     // padding-top: 100px;
     padding-bottom: 50px;
 
-    #chartsId5_1,
-    #chartsId5_2,
-    #chartsId5_4,
-    #chartsId5_3,
-    #chartsId5_5,
-    #chartsId5_6 {
+    #chartsId6_1,
+    #chartsId6_2,
+    #chartsId6_4,
+    #chartsId6_3,
+    #chartsId6_5,
+    #chartsId6_6 {
         width: 540px;
         height: 378px;
     }

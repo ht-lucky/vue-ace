@@ -5,17 +5,17 @@ const echarts = require('echarts');
 var dataset = {
     dimensions: ["部门", "收件量"],
     source: [
-        { 部门: "部门1", 收件量: 1523,平均时长:1 },
-		{ 部门: "部门2", 收件量: 5223,平均时长:2  },
-		{ 部门: "部门3", 收件量: 2123,平均时长:2  },
-		{ 部门: "部门4", 收件量: 4123,平均时长:2  },
-		{ 部门: "部门5", 收件量: 3123,平均时长:3  },
-		{ 部门: "部门6", 收件量: 7123,平均时长:4  },
-		{ 部门: "部门7", 收件量: 6123,平均时长:1  },
-		{ 部门: "部门8", 收件量: 5123,平均时长:3  },
-		{ 部门: "部门9", 收件量: 3123,平均时长:3  },
-		{ 部门: "部门10", 收件量: 7123,平均时长:4  },
-		{ 部门: "部门11", 收件量: 5123,平均时长:1  },
+        { 部门: "部门1", 收件量: 1523, 平均时长: 1 },
+        { 部门: "部门2", 收件量: 5223, 平均时长: 2 },
+        { 部门: "部门3", 收件量: 2123, 平均时长: 2 },
+        { 部门: "部门4", 收件量: 4123, 平均时长: 2 },
+        { 部门: "部门5", 收件量: 3123, 平均时长: 3 },
+        { 部门: "部门6", 收件量: 7123, 平均时长: 4 },
+        { 部门: "部门7", 收件量: 6123, 平均时长: 1 },
+        { 部门: "部门8", 收件量: 5123, 平均时长: 3 },
+        { 部门: "部门9", 收件量: 3123, 平均时长: 3 },
+        { 部门: "部门10", 收件量: 7123, 平均时长: 4 },
+        { 部门: "部门11", 收件量: 5123, 平均时长: 1 },
     ]
 }
 let color = ['#5B8FF988']
@@ -26,7 +26,7 @@ function series() {
         s.push({
             type: 'scatter',
             symbolSize: function (data) {
-                return data['平均时长'] *10
+                return data['平均时长'] * 10
                 const size = Math.sqrt(data[dim])
                 let retSize = 0
                 if (size < 5000) {
@@ -230,44 +230,44 @@ const option2 = {
     // },
     // calculable: true,
     series: [
-            {
-                name: '漏斗图',
-                type: 'funnel',
-                left: '-2%',
-                top: 60,
-                //x2: 80,
-                bottom: 60,
-                width: '80%',
-                z: 10,
-                // height: {totalHeight} - y - y2,
-                // min: 10,
-                // max: 100,
-                maxSize: '90%',
-                minSize: '30%',
-                sort: 'descending',
-                gap: 2,
-                label: {
-                    position: 'right',
-                    color: '#0000'
-                },
-                labelLine: {
-                    show: false,
-                    normal: {
-                        length: 0,
-                        lineStyle: {
-                            width: 0,
-                            type: 'solid'
-                        }
-                    }
-                },
-                data: [
-                    { value: 100, name: "Visit" },
-                    { value: 80, name: "Inquiry" },
-                    { value: 200, name: "Order" },
-                    { value: 80, name: "Click" },
-                    { value: 100, name: "Show" },
-                ]
+        {
+            name: '漏斗图',
+            type: 'funnel',
+            left: '-2%',
+            top: 60,
+            //x2: 80,
+            bottom: 60,
+            width: '80%',
+            z: 10,
+            // height: {totalHeight} - y - y2,
+            // min: 10,
+            // max: 100,
+            maxSize: '90%',
+            minSize: '30%',
+            sort: 'descending',
+            gap: 2,
+            label: {
+                position: 'right',
+                color: '#0000'
             },
+            labelLine: {
+                show: false,
+                normal: {
+                    length: 0,
+                    lineStyle: {
+                        width: 0,
+                        type: 'solid'
+                    }
+                }
+            },
+            data: [
+                { value: 100, name: "Visit" },
+                { value: 80, name: "Inquiry" },
+                { value: 200, name: "Order" },
+                { value: 80, name: "Click" },
+                { value: 100, name: "Show" },
+            ]
+        },
         {
             name: '漏斗图',
             type: 'funnel',
@@ -279,13 +279,13 @@ const option2 = {
             max: 100,
             minSize: '0%',
             maxSize: 0, // 设为 0，表示最大宽度为0，这样此层只会显示label
-            borderColor:'#0000',
+            borderColor: '#0000',
             // //并且由于宽度为0，漏斗图是居中显示的，所以label线条的起始位置都是中间
             // sort: 'descending',
             // z: 1,// 控制图形的前后顺序。z值小的图形会被z值大的图形覆盖。
             // gap: 2,
-            itemStyle:{
-                borderWidth:0
+            itemStyle: {
+                borderWidth: 0
             },
             label: {
                 show: true,
@@ -331,16 +331,16 @@ const option2 = {
 }
 
 const option3 = {
-    title:{
-        text:'部门用时分布',
+    title: {
+        text: '部门用时分布',
     },
     tooltip: {
         trigger: 'item',
         formatter(params) {
             console.log(params);
             let toolVal = '';
-                toolVal = params.data['部门'] + '<br/>' + '收件量' + ':' +params.data['收件量']+ '<br/>'+ '平均时长' + ':' +params.data['平均时长'];
-            
+            toolVal = params.data['部门'] + '<br/>' + '收件量' + ':' + params.data['收件量'] + '<br/>' + '平均时长' + ':' + params.data['平均时长'];
+
             return toolVal
         }
     },
@@ -479,8 +479,314 @@ const option4 = {
         }
     ]
 }
-const option5 = {};
-const option6 = {};
+const option5 = {
+    color: ["#00A8FF"],
+    grid: {
+        top: '23%',
+        left: '2%',
+        right: '2%',
+        bottom: '0',
+        containLabel: true,
+    },
+    tooltip: {
+        ...TOOLTIP_STYLE
+    },
+    xAxis: {
+        type: 'category',
+        data: ["新能源", "磁性材料", "未来产业", "农文旅", "生物医药"],
+        splitLine: {
+            show: false,
+        },
+        axisLabel: {
+            color: "#ffffff",
+            fontSize: 12,
+            interval: 'auto', // x轴间距
+            rotate: 20
+        },
+        axisTick: {
+            show: false
+        },
+        axisLine: {
+            lineStyle: {
+                color: 'rgba(152, 212, 255, .5)',
+            }
+        },
+    },
+    yAxis: [{
+        type: 'value',
+        nameGap: '30',
+        min: 0,
+        axisTick: {
+            show: false
+        },
+        axisLabel: {
+            show: true,
+            fontSize: 12,
+            color: "#fff",
+        },
+        axisLine: {
+            show: false,
+            lineStyle: {
+                color: 'rgba(152, 212, 255, .5)',
+            }
+        },
+        splitLine: {
+            type: 'dashed',
+            lineStyle: {
+                color: 'rgba(152, 212, 255, .1)',
+            }
+        },
+        nameTextStyle: {
+            color: "#fff    ",
+            fontWeight: 400,
+            fontSize: 12,
+        },
+    }],
+    series: [{
+        data: [200, 85, 12, 275, 305],
+        type: "bar", // 柱图
+        barMaxWidth: "auto",
+        markPoint: {
+            data: [],
+            tooltip: {
+                show: false,
+            },
+            zIndex: 11,
+            symbolSize: [40, 20],
+            label: {
+                offset: [0, 0, 0, 0],
+                show: true,
+                fontSize: fontSize(0.12),
+                color: '#fff',
+                padding: [40, 0, 0, 0],
+            },
+            symbolOffset: [0, -20]
+        },
+        barWidth: 20,
+        name: "产业分布",
+
+        itemStyle: {
+            color: {
+                x: 0,
+                y: 0,
+                x2: 0,
+                y2: 1,
+                type: "linear",
+                global: false,
+                colorStops: [{
+                    offset: 1,
+                    color: "rgba(42,118,255, 0)"
+                }, {
+                    offset: 0.5,
+                    color: "rgba(42,118,255, 0.5)"
+                }, {
+                    offset: 0,
+                    color: "rgba(42,118,255, 1)"
+                }]
+            }
+        },
+        zlevel: 2
+    },
+    {
+        data: [1, 1, 1, 1, 1],
+        type: "pictorialBar", // 底部
+        barMaxWidth: "20",
+        symbolOffset: [0, 0],
+        symbolSize: [20, 7],
+    }, {
+        data: [205, 90, 16, 280, 311],
+        type: "pictorialBar",  // 顶部
+        barMaxWidth: "20",
+        symbolPosition: "end",
+        symbolOffset: [0, 0],
+        symbolSize: [20, 6],
+    },
+    {
+        type: "bar",
+        barWidth: 20,
+        barGap: "-100%",
+        data: [400, 400, 400, 400, 400], //背景阴影长度
+        itemStyle: {
+            normal: {
+                color: "rgba(255,255,255,0.1)",
+                barBorderRadius: [0, 0, 0, 0],
+            },
+        },
+        tooltip: {
+            show: false,
+        },
+        zlevel: 1
+    }]
+};
+const option6 = {
+    legend: {
+        data:[{
+            name: '亿元以上',
+            itemStyle: {
+                color: 'rgba(44,165,244,1)'
+            },
+        },{
+            name: '10亿元以上',
+            itemStyle: {
+                color: 'rgba(0,247,195, 1)'
+            },
+        }],
+        show: true,
+        top: 10,
+        right: 20,
+        itemWidth: 10,
+        itemHeight: 10,
+        selectedMode: false,
+        textStyle: {
+            color: 'rgba(255, 255, 255, 1)',
+            fontSize: 14,
+            padding: [0, 8, 0, 8]
+        }
+    },
+    grid: {
+        top: '23%',
+        left: '2%',
+        right: '2%',
+        bottom: '0',
+        containLabel: true,
+    },
+    tooltip: {
+        ...TOOLTIP_STYLE,
+        trigger: 'axis',
+        axisPointer: {
+            lineStyle: {
+                color: 'rgb(126,199,255)',
+            },
+        },
+    },
+    xAxis: [{
+        data: ["乡镇名称", "乡镇名称2", "乡镇名称3", "乡镇名称4", "乡镇名称5"],
+        splitLine: {
+            show: false,
+        },
+        axisLabel: {
+            color: "#ffffff",
+            fontSize: 12,
+            interval: 'auto', // x轴间距
+            rotate: 20
+        },
+        axisTick: {
+            show: false
+        },
+        axisLine: {
+            lineStyle: {
+                color: 'rgba(152, 212, 255, .5)',
+            }
+        },
+    }],
+    yAxis: [{
+        type: 'value',
+        nameGap: '30',
+        min: 0,
+        axisTick: {
+            show: false
+        },
+        axisLabel: {
+            show: true,
+            fontSize: 12,
+            color: "#fff",
+        },
+        axisLine: {
+            show: false,
+            lineStyle: {
+                color: 'rgba(152, 212, 255, .5)',
+            }
+        },
+        splitLine: {
+            type: 'dashed',
+            lineStyle: {
+                color: 'rgba(152, 212, 255, .1)',
+            }
+        },
+        nameTextStyle: {
+            color: "#fff    ",
+            fontWeight: 400,
+            fontSize: 12,
+        },
+    }],
+    series: [
+        {
+            data: [300, 185, 112, 225, 105],
+            type: "bar", // 柱图
+            barWidth: 10,
+            zlevel: 2,
+            name: "亿元以上",
+            itemStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{ //颜色渐变函数 前四个参数分别表示四个位置依次为左、下、右、上
+                    offset: 0,
+                    color: 'rgba(44,165,244,1)'
+                }, {
+                    offset: 1,
+                    color: 'rgba(44,165,244,0)'
+                }])
+            },
+        },
+        {
+            data: [200, 85, 12, 275, 305],
+            type: "bar", // 柱图
+            barWidth: 10,
+            zlevel: 2,
+            name: "10亿元以上",
+            itemStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{ //颜色渐变函数 前四个参数分别表示四个位置依次为左、下、右、上
+                    offset: 0,
+                    color: 'rgba(0,247,195, 1)'
+                }, {
+                    offset: 1,
+                    color: 'rgba(0,247,195, 0)'
+                }])
+            },
+        },
+        {
+            data: [305, 190, 117, 230, 110],
+            color: '#fff',
+            type: "pictorialBar",  // 顶部1
+            barMaxWidth: "10",
+            symbolPosition: "end",
+            symbolOffset: [-3, 0],
+            symbolSize: [10, 3],
+            tooltip: {
+                show: false,
+            }
+        },
+        {
+            data: [205, 90, 16, 280, 311],
+            color: '#fff',
+            type: "pictorialBar",  // 顶部1
+            barMaxWidth: "10",
+            symbolPosition: "end",
+            symbolOffset: [-15, 0],
+            symbolSize: [10, 3],
+            tooltip: {
+                show: false,
+            }
+        },
+
+        {
+            name: "",
+            barGap: '-220%',
+            type: 'bar',
+            z: 0,
+            data: [400, 400, 400, 400, 400],
+            barWidth: '40px',
+            itemStyle: {
+                normal: {
+                    color: '#fff', // 0% 处的颜色
+                    opacity: 0.1//透明度
+                }
+            },
+            tooltip: {
+                show: false,
+            }
+        },
+
+    ]
+};
 
 
 
