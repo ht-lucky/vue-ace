@@ -680,7 +680,83 @@ const option3 = {
         },
     ]
 };
-const option4 = {}
+const option4 = {
+    color: ['#00DD7A', '#FF671C'],
+    tooltip: {
+        // trigger: 'item',
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        },
+        show: true,
+    },
+    xAxis: {
+        boundaryGap: true,
+        axisTick: false,
+        data: ['部门1', '部门2', '部门3', '部门4', '部门5', '部门6', '部门7'],
+        name: '',
+        axisLabel: {
+            textStyle: {
+                color: 'rgba(255,255,255,0)'
+                // color:'#ccc'
+            },
+        },
+        axisLine: {
+            lineStyle: {
+                color: "#ccc"
+            }
+        },
+    },
+    grid: {
+        top: '10%',
+        left: '0%',
+        right: '0%',
+        bottom: '-10%',
+        containLabel: true
+    },
+    yAxis: [{
+        splitLine: {
+            show: true,
+            lineStyle: {
+                type: 'dashed',
+                color: 'rgba(222, 222, 222, 1)'
+            }
+        },
+        axisLabel: {
+            show: true,
+            textStyle: {
+                color: '#7e7e7e'
+            },
+        },
+    }],
+    series: [
+        {
+            label: {
+                width: 10,
+                show: true,
+                formatter: (val) => {
+                    let arr = val.name.split('');
+                    let str = '';
+                    arr.forEach((item) => {
+                        str = str + '\n' + item;
+                    });
+                    return str;
+                }
+            },
+            name: '面积',
+            type: 'bar',
+            // barWidth: 20,
+            // stack: 'one',
+            // showBackground: true,
+            itemStyle: {
+                opacity: 1,
+                color: 'rgba(0, 221, 122, 1)'
+            },
+            // barMinHeight: 3,
+            data: [60, 10, 30, 20, 10, 25, 24, 20, 10, 30, 20, 10, 25, 24]
+        },
+    ]
+}
 const option5 = {}
 const option6 = {}
 
