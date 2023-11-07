@@ -757,7 +757,136 @@ const option4 = {
         },
     ]
 }
-const option5 = {}
+let option5 = (data) => {
+    let arr = [];
+    let key = {}
+    let option =  {
+        tooltip: {
+            ...TOOLTIP_STYLE,
+            ...{
+                trigger: 'item'
+            }
+        },
+        legend: {
+            show: false,
+            type: window.innerWidth < 1440 ? 'scroll' : 'plain',
+            orient: 'vertical',
+            icon: 'circle',
+            top: 'center',
+            right: fontSize(0.14),
+            itemWidth: fontSize(0.08),
+            itemHeight: fontSize(0.08),
+            itemGap: 20,
+            pageIconSize: 8,
+            pageIconColor: 'rgba(191, 209, 251, 1)',
+            pageTextStyle: {
+                color: 'rgba(191, 209, 251, 1)'
+            },
+            textStyle: {
+                rich: {
+                    a: {
+                        color: 'rgba(227, 236, 255, 1)',
+                        align: 'center',
+                        fontSize: fontSize(0.16),
+                        padding: [0, 0, 0, 5]
+                    },
+                    b: {
+                        color: 'rgba(248, 174, 70, 1)',
+                        align: 'center',
+                        fontSize: fontSize(0.16),
+                        fontWeight: 800,
+                        fontFamily: 'Futura-Heavy, Futura',
+                        padding: [6, 0, 0, 0]
+                    },
+                },
+            },
+            formatter: function (name) {
+                let filterData = data.filter(item => item.name === name);
+                return "{a|" + name + "}  " + "{b|" + filterData[0].value + "%}";
+            },
+            data: data.map(item => item.name),
+        },
+        title: {
+            textStyle: {
+                color: '#fff',
+                fontSize: fontSize(0.26)
+            },
+            subtextStyle: {
+                color: 'rgba(125, 152, 191, 1)'
+            },
+            left: 'center',
+            top: '38%'
+        },
+        color: [
+            'rgba(8, 134, 249, 1)',
+            'rgba(47, 254, 202, 1)',
+            'rgba(255, 227, 150, 1)',
+            'rgba(248, 174, 70, 1)',
+            'rgba(247, 87, 87, 1)',
+            'rgba(25, 209, 249, 1)',
+            'rgba(255, 253, 105, 1)',
+            'rgba(8, 134, 249, 1)',
+            'rgba(223, 52, 255, 1)',
+            'rgba(255, 52, 52, 1)',
+            'rgba(25, 206, 255, 1)',
+        ],
+        series: [
+            {
+                type: 'pie',
+                radius: ['48%', '60%'],
+                center: ['30%', '50%'], //性设置图的上下左右的位置
+                label: {
+                    show: false,
+                    position: 'center',
+                    formatter: (params) => {
+                        if(!key[params.name]) {
+                            key[params.name] = true;
+                            arr.push(params);
+                        }
+                    }
+                },
+                itemStyle: {
+                    borderColor: 'rgba(0,0,0,0.1)',
+                    borderWidth: 2,
+                },
+                emphasis: {
+                    label: {
+                        show: true,
+                        rich: {
+                            a: {
+                                color: '#fff',
+                                align: 'center',
+                                fontSize: fontSize(0.24),
+                                fontWeight: 800,
+                                fontFamily: 'Futura-Heavy, Futura',
+                                lineHeight: fontSize(0.35),
+                                padding: [8, 0, 8, 0]
+                            },
+                            b: {
+                                color: '#fff',
+                                align: 'center',
+                                fontSize: fontSize(0.16),
+                                lineHeight: fontSize(0.24),
+                            }
+                        },
+                        formatter: '{a|({d}%)}\n{b|{b}}', //带当前图例名 + 百分比
+                    }
+                },
+
+                labelLine: {
+                    show: false
+                },
+                data: [
+                    ...data
+                ]
+            },
+        ]
+    }
+    return {
+        option,
+        arr
+    }
+}
 const option6 = {}
 
 
