@@ -1,28 +1,22 @@
 <template>
     <div>
+        
         <div class="wrap">
-            <div class="box">31<div id="chartsId8_1"></div>
+            <div class="box">
+                
+                37<div :id="echartsOptions[0].el" class="echarts"></div>
             </div>
-            <div class="box">32<div id="chartsId8_2"></div>
+            <div class="box">38<div id="chartsId9_2"></div>
             </div>
-            <div class="box">33<div id="chartsId8_3"></div>
+            <div class="box">39<div id="chartsId9_3"></div>
             </div>
         </div>
         <div class="wrap">
-            <div class="box">34<div id="chartsId8_4"></div>
+            <div class="box">40<div id="chartsId9_4"></div>
             </div>
-            <div class="box">
-                35<div id="chartsId8_5"></div>
-                <div class="legend">
-                    <div class="legend-item" @mouseover="mouseoverHandlerCategory(item.name)"
-                        v-for="(item, index) in categoryList" :key="index">
-                        <div class="item-icon" :style="{ background: item.color }"></div>
-                        <div class="item-name">{{ item.name ? item.name.replace('工业', '') : item.name }}</div>
-                        <div class="item-value">{{ item.value }}个</div>
-                    </div>
-                </div>
+            <div class="box">41<div id="chartsId9_5"></div>
             </div>
-            <div class="box">36 <div id="chartsId8_6"></div>
+            <div class="box">42<div id="chartsId9_6"></div>
             </div>
         </div>
     </div>
@@ -31,6 +25,10 @@
 <script>
 import { option1, option2, option3, option4, option5, option6 } from './echarts'
 const _symbol = require('./label-bg.svg');
+import * as echarts from 'echarts'
+import "echarts-liquidfill";
+
+import {useFontSize} from '../utils'
 export default {
     components: {
     },
@@ -42,44 +40,159 @@ export default {
             chart4: "",
             chart5: "",
             chart6: "",
-            categoryList: [
-                { name: 'label1', num: 'num1', value: '111' },
-                { name: 'label2', num: 'num2', value: '222' },
-                { name: 'label3', num: 'num3', value: '333' },
-                { name: 'label4', num: 'num4', value: '444' },
-                { name: 'label5', num: 'num5', value: '555' },
+            echartsOptions: [
+                {
+                    el: 'personEcharts',
+                    backgroundColor: 'rgba(255,215,77,0.2)',
+                    color: [{
+                        type: 'linear',
+                        x: 0, x2: 0, y: 0, y2: 1,
+                        colorStops: [
+                            {
+                                offset: 0,
+                                color: '#FFC652',
+                            },
+                            {
+                                offset: 1,
+                                color: '#B13500',
+                            }
+                        ]
+                    }],
+                    borderColor: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                        {
+                            offset: 0,
+                            color: 'rgba(251, 190, 77, 1)'
+                        },
+                        {
+                            offset: 1,
+                            color: 'rgba(251, 190, 77, 0)'
+                        }
+                    ])
+                }
             ],
+            echartsList: [
+                {
+                    value: 0.75,
+                    name: '个人数评',
+                    subs: [
+                        { name: '工作会议', value: 31 },
+                        { name: '报告提交', value: 31 },
+                        { name: '考勤管理', value: 31 },
+                        { name: '学习培训', value: 31 },
+                        { name: '群众走访', value: 31 },
+                        { name: '事件到场', value: 31 },
+                        { name: '任务完成', value: 31 },
+                    ]
+                },
+                {
+                    value: 0.55,
+                    name: '群众评价',
+                    subs: [
+                        { name: '熟悉程度', value: 31 },
+                        { name: '态度作风', value: 31 },
+                        { name: '问题处理', value: 31 },
+                        { name: '矛盾调处', value: 31 },
+                        { name: '政策宣讲', value: 31 },
+                    ]
+                },
+                {
+                    value: 0.35,
+                    name: '专项考察',
+                    subs: [
+                        { name: '组织纪律', value: 31 },
+                        { name: '问题协调', value: 31 },
+                        { name: '任务推进', value: 31 },
+                        { name: '党群联系', value: 31 },
+                    ]
+                }
+            ],
+            chartList: {}
+
         }
     },
     methods: {
-        mouseoverHandlerCategory(text) {
-            let allIndex = this.categoryList.map((item, index) => index);
-            this.categoryList.forEach((item, index) => {
-                if (item.name === text) {
-                    if (this.timerCategory) {
-                        clearInterval(this.timerCategory);
-                        this.timerCategory = null;
-                    }
-                    this.chartCategory.dispatchAction({
-                        type: 'downplay',
-                        seriesIndex: 0,
-                        dataIndex: allIndex,
-                    })
-                    this.chartCategory.dispatchAction({
-                        type: 'highlight',
-                        seriesIndex: 0,
-                        dataIndex: index,
-                    })
+        initEcharts2(params) {
+            const option = created(params)
+
+            function created(data) {
+                const round = (num) => {
+                    return Math.round(num * 100) / 100
                 }
-            });
+                return {
+                    series: [
+                        {
+                            type: 'liquidFill',
+                            radius: '80%',
+                            center: ['50%', '50%'],
+                            data: [data.value, data.value, data.value], // data个数代表波浪数
+                            backgroundStyle: {
+                                borderWidth: 0,
+                                color: params.backgroundColor ?? 'rgb(255,0,255,0.1)',
+                            },
+                            // 修改波浪颜色
+                            color: params.color,
+                            // color:['yellow','red','pink'],  每个波浪不同颜色，颜色数组长度为对应的波浪个数
+                            label: {
+                                formatter: `{size|${round(data.value * 100)}}\n{name|${data.name}}`,
+                                rich: {
+                                    size: {
+                                        fontSize: useFontSize(0.3),
+                                        fontWeight: 'bold',
+                                        fontFamily: 'LINESeedSans, LINESeedSans',
+                                        color: '#FFFFFF',
+                                        padding: [0, 0, 5, 0]
+                                    },
+                                    name: {
+                                        fontSize: useFontSize(0.14),
+                                        color: '#FFFFFF'
+                                    }
+                                }
+                            },
+                            labelLayout: {
+                                y: '50%'
+                            },
+                            outline: {
+                                show: false,
+                            },
+                        },
+                        {
+                            type: 'pie',
+                            center: ['50%', '50%'],
+                            radius: ['91%', '93%'],
+                            data: [
+                                {
+                                    name: '',
+                                    value: 500,
+                                    labelLine: {
+                                        show: false,
+                                    },
+                                    itemStyle: {
+                                        color: params.borderColor ?? 'rgba(2, 180, 255, 1)',
+                                    }
+                                },
+                            ],
+                        },
+                    ],
+                }
+            }
+
+            const dom = document.getElementById(params.el);
+            const chart = echarts.init(dom);
+            option && chart.setOption(option);
+            this.chartList[`chart${params.index}`] = chart
+            window.onresize = () => {
+                Object.keys(this.chartList).forEach(key => {
+                    this.chartList[key]?.resize()
+                })
+            }
         },
         initEcharts() {
 
-            // 第1个图表
-            this.chart1 = this.$echarts.init(document.getElementById('chartsId8_1'));
-            this.chart1.setOption(option1);
+            // // 第1个图表
+            // this.chart1 = this.$echarts.init(document.getElementById('chartsId9_1'));
+            // this.chart1.setOption(option1);
             // 第2个图表
-            this.chart2 = this.$echarts.init(document.getElementById('chartsId8_2'));
+            this.chart2 = this.$echarts.init(document.getElementById('chartsId9_2'));
             this.chart2.setOption(option2);
 
             // 第3个图表
@@ -91,7 +204,7 @@ export default {
             }, { value: 'NO.1', xAxis: 3, yAxis: 400, symbol: 'image://' + _symbol, },
             { value: 'NO.1', xAxis: 4, yAxis: 400, symbol: 'image://' + _symbol, }];
             option3.series[0].markPoint.data = _markPoint2;
-            this.chart3 = this.$echarts.init(document.getElementById('chartsId8_3'));
+            this.chart3 = this.$echarts.init(document.getElementById('chartsId9_3'));
             this.chart3.setOption(option3);
             // 第4个图表
             option4.series[0].data = option4.series[0].data?.map(item => {
@@ -107,80 +220,12 @@ export default {
                     }
                 }
             })
-            this.chart4 = this.$echarts.init(document.getElementById('chartsId8_4'));
+            this.chart4 = this.$echarts.init(document.getElementById('chartsId9_4'));
             this.chart4.setOption(option4);
-            // 第5个图表
-            let allIndex = this.categoryList.map((item,index) => index)
-            this.chart5 = this.$echarts.init(document.getElementById('chartsId8_5'));
-            this.chartCategory = this.chart5;
-            this.chartCategory.on('mouseover', (event) => {
-                if (this.timerCategory) {
-                    clearInterval(this.timerCategory);
-                    this.timerCategory = null;
-                }
-                this.chartCategory.dispatchAction({
-                    type: 'downplay',
-                    seriesIndex: 0,
-                    dataIndex: allIndex,
-                })
-                this.chartCategory.dispatchAction({
-                    type: 'highlight',
-                    seriesIndex: 0,
-                    dataIndex: event.dataIndex,
-                })
-            });
-
-            this.chartCategory.dispatchAction({
-                type: 'downplay',
-                seriesIndex: 0,
-                dataIndex: allIndex,
-            })
-            this.chartCategory.dispatchAction({
-                type: 'highlight',
-                seriesIndex: 0,
-                dataIndex: 0,
-            })
-
-            if (this.timerCategory) {
-                clearInterval(this.timerCategory);
-                this.timer = null;
-            }
-            let n = 1;
-            this.timerCategory = setInterval(() => {
-                // console.log(n);
-                if (n === this.categoryList.length) {
-                    n = 0;
-                }
-                this.chartCategory.dispatchAction({
-                    type: 'downplay',
-                    seriesIndex: 0,
-                    dataIndex: allIndex,
-                })
-                this.chartCategory.dispatchAction({
-                    type: 'highlight',
-                    seriesIndex: 0,
-                    dataIndex: n,
-                })
-                n++;
-            }, 1000)
-
-            this.$once('hook:beforeDestroy', () => {
-                clearInterval(this.timerCategory);
-                this.timerCategory = null;
-            })
-            let data = [
-                {name:'lable1',value:111},
-                {name:'lable2',value:222},
-                {name:'lable3',value:333},
-                {name:'lable4',value:444},
-                {name:'lable5',value:555},
-            ]
-            let {option, arr} = option5(data)
-            this.chart5.setOption(option);
-            // this.chart5.setOption(option5);
+          
 
             // 第6个图表
-            this.chart6 = this.$echarts.init(document.getElementById('chartsId8_6'));
+            this.chart6 = this.$echarts.init(document.getElementById('chartsId9_6'));
             this.chart6.setOption(option6);
 
 
@@ -195,6 +240,13 @@ export default {
     },
     mounted() {
         this.initEcharts()
+        this.echartsList.forEach((item, index) => {
+            this.initEcharts2({
+                ...this.echartsOptions[index],
+                ...item,
+                index,
+            })
+        })
     }
 }
 </script>
@@ -207,12 +259,13 @@ export default {
     // padding-top: 100px;
     padding-bottom: 50px;
 
-    #chartsId8_1,
-    #chartsId8_2,
-    #chartsId8_4,
-    #chartsId8_3,
-    #chartsId8_5,
-    #chartsId8_6 {
+    #chartsId9_1,
+    .echarts,
+    #chartsId9_2,
+    #chartsId9_4,
+    #chartsId9_3,
+    #chartsId9_5,
+    #chartsId9_6 {
         width: 540px;
         height: 378px;
     }
@@ -225,6 +278,11 @@ export default {
         border: 2px solid;
         border-image: linear-gradient(225deg, rgba(5, 183, 237, 0), rgba(76, 142, 246, 0.47), rgba(2, 128, 215, 0)) 2 2;
         position: relative;
+    }
+
+    .evaluate-index__item {
+        height: 368px;
+        overflow: scroll;
     }
 }
 
