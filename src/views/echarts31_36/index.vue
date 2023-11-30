@@ -85,10 +85,10 @@ export default {
             // 第3个图表
             let _markPoint2 = [{
                 value: 'NO.1', xAxis: 0, yAxis: 400, symbol: 'image://' + _symbol,
-            }, { value: 'NO.1', xAxis: 1, yAxis: 400, symbol: 'image://' + _symbol },
+            }, { value: 'NO.2', xAxis: 1, yAxis: 400, symbol: 'image://' + _symbol },
             {
-                value: 'NO.1', xAxis: 2, yAxis: 400, symbol: 'image://' + _symbol,
-            }, { value: 'NO.1', xAxis: 3, yAxis: 400, symbol: 'image://' + _symbol, },
+                value: 'NO.3', xAxis: 2, yAxis: 400, symbol: 'image://' + _symbol,
+            }, { value: 'NO.4', xAxis: 3, yAxis: 400, symbol: 'image://' + _symbol, },
             { value: 'NO.1', xAxis: 4, yAxis: 400, symbol: 'image://' + _symbol, }];
             option3.series[0].markPoint.data = _markPoint2;
             this.chart3 = this.$echarts.init(document.getElementById('chartsId7_3'));
