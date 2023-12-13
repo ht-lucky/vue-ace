@@ -3,7 +3,6 @@
         
         <div class="wrap">
             <div class="box">
-                
                 37<div :id="echartsOptions[0].el" class="echarts"></div>
             </div>
             <div class="box">38<div id="chartsId9_2"></div>
