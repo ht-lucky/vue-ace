@@ -49,7 +49,7 @@ export default {
                     // hint: codemirror.hint.javascript
                 },
                 lint: true,
-                spellcheck:true,
+                spellcheck: true,
                 // 快捷键 可提供三种模式 sublime、emacs、vim
                 keyMap: 'sublime',
                 matchBrackets: true,
@@ -103,7 +103,13 @@ export default {
             // const dom = document.getElementById(id);
             // const chart = echarts.init(dom);
             const option = value()
-            option(this.id)
+            try {
+                console.log(1111);
+                option(this.id)
+            } catch (e) {
+                console.log(e,2121);
+            }
+
             // console.log(option)
             // option && chart.setOption(option(id));
             // window.onresize = () => {
@@ -155,5 +161,4 @@ export default {
     width: 1000px !important;
     height: 90vh !important;
 }
-
 </style>
