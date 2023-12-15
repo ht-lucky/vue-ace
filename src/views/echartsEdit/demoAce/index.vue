@@ -25,6 +25,13 @@ import 'ace-builds/src-noconflict/mode-json5'
 // import 'ace-builds/src-noconflict/mode-text'
 import 'ace-builds/src-min-noconflict/ext-language_tools'
 import 'ace-builds/src-min-noconflict/mode-javascript'
+
+
+import 'ace-builds/src-noconflict/mode-sql'; // sql模式的包
+import 'ace-builds/src-noconflict/mode-mysql';// mysql模式的包
+import 'ace-builds/src-noconflict/mode-javascript';// mysql模式的包
+import 'ace-builds/src-noconflict/theme-xcode';// xcode,(亮白)的主题样式
+import "ace-builds/src-noconflict/theme-twilight";// twilight,(暗黑)的主题样式
 import { initLine01, initLine02 } from '../echarts/line.js'
 import * as echarts from "echarts";
 window.echarts = echarts
@@ -124,11 +131,11 @@ export default {
 
         },
         validateJavasriptSyntax(code) {
+            this.editor.getSession().setAnnotations([]);
             try {
                 // let strCode = JSON.parse(code)
                 // console.log(code);
                 let str = String(code);
-                console.log(1111);
                 let acorn = require("acorn");
 
                 acorn.parse(str, {
@@ -141,8 +148,8 @@ export default {
                 });
                 // console.log(acorn.parse(code, { ecmaVersion: 2020 }), 99999);
             } catch (error) {
-                console.log(error.loc);
-                console.log("validateJavasriptSyntax", error, 11111222333);
+                // console.log(error.loc);
+                // console.log("validateJavasriptSyntax", error, 11111222333);
                 let annotationList = [];
                 let annotation = {
                     row: error?.loc?.line - 2,
@@ -152,7 +159,7 @@ export default {
                 }
                 annotationList.push(annotation);
                 this.annotaions = annotationList;
-                console.log(annotationList);
+                // console.log(annotationList);
                 this.editor.getSession().setAnnotations(annotationList);
             }
         },
