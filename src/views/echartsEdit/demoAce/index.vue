@@ -1,5 +1,5 @@
 <template>
-    <div class="">
+    <div class="box">
         <div>
 
             <div @click="renderEchartsDemo">执行</div>
@@ -17,8 +17,7 @@
 <script>
 //ace-editor
 import ace from 'ace-builds'
-// ace主题
-import 'ace-builds/src-noconflict/theme-kuroir'
+
 // ace 文本格式,以json为例
 import 'ace-builds/src-noconflict/mode-json5'
 // import 'ace-builds/src-noconflict/mode-xml'
@@ -29,10 +28,13 @@ import 'ace-builds/src-min-noconflict/mode-javascript'
 
 import 'ace-builds/src-noconflict/mode-sql'; // sql模式的包
 import 'ace-builds/src-noconflict/mode-mysql';// mysql模式的包
+// ace主题
+import 'ace-builds/src-noconflict/theme-kuroir'
 import 'ace-builds/src-noconflict/mode-javascript';// mysql模式的包
 import 'ace-builds/src-noconflict/theme-xcode';// xcode,(亮白)的主题样式
 import "ace-builds/src-noconflict/theme-twilight";// twilight,(暗黑)的主题样式
 import { initLine01, initLine02 } from '../echarts/line.js'
+import 'ace-builds/webpack-resolver'; // 左侧提示错误信息 需要下载file-loader
 import * as echarts from "echarts";
 window.echarts = echarts
 export default {
@@ -72,15 +74,9 @@ export default {
             // let str = this.editor.setValue(this.item, -1)
             this.item = this.editor.getValue()
             if (this.item) {
-                this.validateJavasriptSyntax(this.item)
-                // this.checkEsprima(this.item)
+                // this.validateJavasriptSyntax(this.item)
             }
-
-
         })
-        // this.editor.on('load', (val) => {
-        //    console.log(val,111111999);
-        // })
         this.editor.setOption("mode", "ace/mode/javascript");
         this.id = this.$route.query.id
         this.item = this.getText(this.id)
@@ -93,7 +89,6 @@ export default {
         //     text: "Strange error",
         //     type: "error" // also warning and information
         // }]);
-
     },
     methods: {
 
@@ -131,6 +126,7 @@ export default {
 
         },
         validateJavasriptSyntax(code) {
+            // 检查代码语法错误
             this.editor.getSession().setAnnotations([]);
             try {
                 // let strCode = JSON.parse(code)
@@ -163,22 +159,21 @@ export default {
                 this.editor.getSession().setAnnotations(annotationList);
             }
         },
-        // checkEsprima(code) {
-        //     const esprima = require('esprima');
-        //     let str = String(code);
-        //     console.log(checkSyntax(str), 111);
-        //     function checkSyntax(code) {
-        //         try {
-        //             esprima.parseScript(code, { tolerant: true });
-        //             return [];
-        //         } catch (error) {
-        //             return error.errors || [error];
-        //         }
-        //     }
+        checkEsprima(code) {
+            const esprima = require('esprima');
+            let str = String(code);
+            console.log(checkSyntax(str), 111);
+            function checkSyntax(code) {
+                try {
+                    esprima.parseScript(code, { tolerant: true });
+                    return [];
+                } catch (error) {
+                    return error.errors || [error];
+                }
+            }
 
 
-
-        // },
+        },
         getText(id) {
             let javascript = this.echartsObject[id];
             javascript = `${javascript}`.replace(/echarts__WEBPACK_IMPORTED_MODULE_0__/g, 'echarts')
@@ -202,16 +197,24 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.box {
+}
+
 .wrap {
     display: flex;
-    margin-top: 50px;
+
+    min-height: 97vh;
+    padding-top: 10px;
 
     .echartsId,
     #ace {
         flex: 1;
-        height: 93.5vh;
+        min-height: 97vh;
         border: 1px solid #ccc;
-        margin-right: 30px;
+    }
+
+    .echartsId {
+        background-color: #282c34;
     }
 
     // /deep/ .ace_editor .ace-kuroir {
