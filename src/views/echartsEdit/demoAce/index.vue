@@ -7,7 +7,10 @@
 
                 <div id="ace" ref="ace"></div>
 
-                <div :id="$route.query.id" class="echartsId">
+                <div  class="echartsId">
+                    <div :id="$route.query.id" class="echartsId2">
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -58,7 +61,7 @@ export default {
     mounted() {
         //初始化ace编辑器
         this.editor = ace.edit(this.$refs.ace, {
-            maxLines: 50, // 最大行数，超过会自动出现滚动条
+            maxLines: 70, // 最大行数，超过会自动出现滚动条
             minLines: 12, // 最小行数，还未到最大行数时，编辑器会自动伸缩大小
             fontSize: 14, // 编辑器内字体大小
             theme: 'ace/theme/kuroir', // 默认设置的主题
@@ -210,11 +213,18 @@ export default {
     #ace {
         flex: 1;
         min-height: 97vh;
-        border: 1px solid #ccc;
+       
     }
 
     .echartsId {
         background-color: #282c34;
+        padding: 30px;
+       
+    }
+    .echartsId2{
+        min-height: 85vh;
+        border: 1px solid #ccc;
+        
     }
 
     // /deep/ .ace_editor .ace-kuroir {
