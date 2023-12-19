@@ -5,31 +5,55 @@
         </header>
 
         <div class="top-tab">
-            <div v-for="item in topList" @click="choosedMethod(item)">
+            <div v-for="item in topList" @click="choosedMethod(item)" :class="{ 'active-text': choosed == item }">
                 {{ item }}
             </div>
         </div>
         <div className="gallery">
-            <div v-show="choosed == '折线图' || choosed == '100'">
+            <div v-if="choosed == '折线图' || choosed == '100'">
                 <div class="gallery-title">折线图</div>
                 <div class="gallery-wrapper">
-                    <div v-for="item in line" class="gallery-item" @click="goPage(item)">
+                    <div v-for="item in line" class="gallery-item" @click="goPage(item)" :key="item">
                         <div class="gallery-item__chart" :id='item'></div>
                     </div>
                 </div>
             </div>
-            <div v-show="choosed == '柱状图' || choosed == '100'">
+            <div v-if="choosed == '柱状图' || choosed == '100'">
                 <div class="gallery-title">柱状图</div>
                 <div class="gallery-wrapper">
-                    <div v-for="item in bar" class="gallery-item" @click="goPage(item)">
+                    <div v-for="item in bar" class="gallery-item" @click="goPage(item)" :key="item">
                         <div class="gallery-item__chart" :id='item'></div>
                     </div>
                 </div>
             </div>
-            <div v-show="choosed == '漏斗图' || choosed == '100'">
+            <div v-if="choosed == '饼图' || choosed == '100'">
+                <div class="gallery-title">饼图</div>
+                <div class="gallery-wrapper">
+                    <div v-for="item in pie" class="gallery-item" @click="goPage(item)" :key="item">
+                        <div class="gallery-item__chart" :id='item'></div>
+                    </div>
+                </div>
+            </div>
+            <div v-if="choosed == '漏斗图' || choosed == '100'">
                 <div class="gallery-title">漏斗图</div>
                 <div class="gallery-wrapper">
-                    <div v-for="item in funnel" class="gallery-item" @click="goPage(item)">
+                    <div v-for="item in funnel" class="gallery-item" @click="goPage(item)" :key="item">
+                        <div class="gallery-item__chart" :id='item'></div>
+                    </div>
+                </div>
+            </div>
+            <div v-if="choosed == '仪表盘' || choosed == '100'">
+                <div class="gallery-title">仪表盘</div>
+                <div class="gallery-wrapper">
+                    <div v-for="item in gauge" class="gallery-item" @click="goPage(item)" :key="item">
+                        <div class="gallery-item__chart" :id='item'></div>
+                    </div>
+                </div>
+            </div>
+            <div v-if="choosed == '盒须图' || choosed == '100'">
+                <div class="gallery-title">盒须图</div>
+                <div class="gallery-wrapper">
+                    <div v-for="item in hxt" class="gallery-item" @click="goPage(item)" :key="item">
                         <div class="gallery-item__chart" :id='item'></div>
                     </div>
                 </div>
@@ -40,47 +64,21 @@
 </template>
 
 <script>
-import { initLine01, initLine02 } from './echarts/line.js'
-import {
-    initBar01,
-    initBar02,
-    initBar03,
-    initBar04,
-    initBar05,
-    initBar06,
-    initBar07,
-    initBar08,
-    initBar09,
-    initBar10,
-    initBar11,
-} from "./echarts/bar";
-import { initFunnelO1 } from './echarts/funnel.js'
+import {echartsObject, line, bar, funnel, gauge, hxt, pie,} from './dics/index.js'
 export default {
     props: [],
     data() {
         return {
-            topList: ['折线图', '柱状图', '漏斗图'],
+            topList: ['折线图', '柱状图', '饼图', '漏斗图', '仪表盘', '盒须图'],
             choosed: '100',
-            echartsObject: {
-                initLine01,
-                initLine02,
-                initBar01,
-                initBar02,
-                initBar03,
-                initBar04,
-                initBar05,
-                initBar06,
-                initBar07,
-                initBar08,
-                initBar09,
-                initBar10,
-                initBar11,
-                initFunnelO1
-            },
-            line: ['initLine01', 'initLine02'],
-            bar: ['initBar01', 'initBar02', 'initBar03', 'initBar04', 'initBar05', 'initBar06', 'initBar07', 'initBar08', 'initBar09', 'initBar10', 'initBar11'],
-            funnel: ['initFunnelO1'],
-            havedList:[]
+            echartsObject,
+            line,
+            bar,
+            funnel,
+            gauge,
+            hxt,
+            pie,
+            havedList: []
         };
     },
 
@@ -92,7 +90,7 @@ export default {
         this.$nextTick(() => {
             for (let key in that.echartsObject) {
                 let echarts = document.getElementById(key)
-                if (isElementInViewport(echarts)) {
+                if (that.isElementInViewport(echarts)) {
                     that.echartsObject[key](key)
                     that.havedList.push(key)
                 }
@@ -100,7 +98,7 @@ export default {
             window.addEventListener('scroll', function () {
                 for (let key in that.echartsObject) {
                     let echarts = document.getElementById(key)
-                    if (isElementInViewport(echarts) && !that.havedList.includes(key)) {
+                    if (that.isElementInViewport(echarts) && !that.havedList.includes(key)) {
                         document.getElementById(key).removeAttribute('_echarts_instance_');
                         that.echartsObject[key](key)
                         that.havedList.push(key)
@@ -109,34 +107,18 @@ export default {
             });
         })
 
-        function isElementInViewport(el) {
-            var rect = el.getBoundingClientRect();
-            return (
-                rect.top >= 0 &&
-                rect.left >= 0 &&
-                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-            );
-        }
-
     },
 
     methods: {
-        // initLine() {
-        //     this.line.forEach(item => {
-        //         this.echartsObject[item](item)
-        //     })
-        // },
-        // initBar() {
-        //     this.bar.forEach(item => {
-        //         this.echartsObject[item](item)
-        //     })
-        // },
-        // initFunnel() {
-        //     this.funnel.forEach(item => {
-        //         this.echartsObject[item](item)
-        //     })
-        // },
+        isElementInViewport(el) {
+            var rect = el.getBoundingClientRect();
+            // console.log( rect.bottom,window.innerHeight || document.documentElement.clientHeight);
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) + 500
+            );
+        },
         goPage(item) {
             this.$router.push({
                 path: 'demoAce',
@@ -151,6 +133,21 @@ export default {
             } else {
                 this.choosed = item
             }
+            this.havedLis = []
+            this.$nextTick(() => {
+                this.havedList = []
+                let that = this
+                for (let key in that.echartsObject) {
+                    let echarts = document.getElementById(key)
+                    if (echarts) {
+                        if (that.isElementInViewport(echarts) && !that.havedList.includes(key)) {
+                            that.echartsObject[key](key)
+                            that.havedList.push(key)
+                        }
+                    }
+                }
+            })
+
         }
     },
 
@@ -184,6 +181,11 @@ export default {
             color: aquamarine;
         }
     }
+
+    .active-text {
+        border: 1px solid green;
+        color: aquamarine;
+    }
 }
 
 .wrap {
@@ -195,8 +197,9 @@ export default {
     display: flex;
     flex-wrap: wrap;
     justify-content: left;
-    width: 1500px;
+    width: 1800px;
     margin: 20px auto;
+
 }
 
 .App-header {
@@ -207,9 +210,10 @@ export default {
     padding: 10px;
     border: 1px solid #ccc;
     box-sizing: border-box;
-    width: 45%;
-    height: 520px;
-    margin-right: 75px;
+    width: 500px;
+    // height: 400px;
+    // height: 500px;
+    margin-left: 85px;
     margin-bottom: 20px;
 }
 

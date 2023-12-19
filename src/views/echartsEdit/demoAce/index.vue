@@ -3,8 +3,14 @@
         <div>
             <div class="wrap">
                 <div id="ace" ref="ace"></div>
-                <div class="echartsId">
-                    <div @click="renderEchartsDemo" class="class-text">执行 <span style="color: red;" v-if="errorIs">（代码错误）</span> </div>
+                <div class="echartsId" :class="{'black-bgc':theme == '0','white-bgc':theme == '1',}">
+                    <div @click="renderEchartsDemo" class="class-text">
+                        <div>执行 <span style="color: red;" v-if="errorIs">（代码错误）</span> </div> 
+                        <div>
+                            <span @click="theme = '0'">深色</span>
+                            <span @click="theme = '1'" style="margin-left: 10px;">浅色</span>
+                        </div>
+                    </div>
                     <div :id="$route.query.id" class="echartsId2">
                     </div>
                 </div>
@@ -32,24 +38,12 @@ import 'ace-builds/src-noconflict/theme-kuroir'
 import 'ace-builds/src-noconflict/mode-javascript';// mysql模式的包
 import 'ace-builds/src-noconflict/theme-xcode';// xcode,(亮白)的主题样式
 // import "ace-builds/src-noconflict/theme-twilight";// twilight,(暗黑)的主题样式
-import { initLine01, initLine02 } from '../echarts/line.js'
-import {
-    initBar01,
-    initBar02,
-    initBar03,
-    initBar04,
-    initBar05,
-    initBar06,
-    initBar07,
-    initBar08,
-    initBar09,
-    initBar10,
-    initBar11,
-} from "../echarts/bar";
-import {initFunnelO1} from '../echarts/funnel.js'
 import 'ace-builds/webpack-resolver'; // 左侧提示错误信息 需要下载file-loader
 import * as echarts from "echarts";
 import 'echarts-liquidfill';
+
+import {echartsObject} from '../dics/index.js'
+
 import * as utils from '../../utils'
 window.echarts = echarts
 window.utils = utils
@@ -59,26 +53,10 @@ export default {
         return {
             id: "",
             item: "",
-            echartsObject: {
-                initLine01,
-                initLine02,
-
-                initBar01,
-                initBar02,
-                initBar03,
-                initBar04,
-                initBar05,
-                initBar06,
-                initBar07,
-                initBar08,
-                initBar09,
-                initBar10,
-                initBar11,
-                initFunnelO1
-            },
+            echartsObject,
             annotaions: [],
             errorIs: false,
-            
+            theme:'0', // 0 黑色主题，1 白色主题
         };
     },
 
@@ -238,27 +216,35 @@ export default {
 .wrap {
     display: flex;
 
-    min-height: 97vh;
+    min-height: 90vh;
     padding-top: 10px;
 
     .echartsId,
     #ace {
         flex: 1;
-        min-height: 97vh;
+        min-height: 90vh;
+        box-sizing: border-box;
 
     }
     .echartsId {
-        background-color: #282c34;
+        
         padding: 100px;
         position: relative;
         .class-text{
             position: absolute;
             top: 10px;
             left: 10px;
-            color: #fff;
             cursor: pointer;
+            text-align: left;
         }
-
+    }
+    .white-bgc{
+        background-color: #fff;
+        color: #000 ;
+    }
+    .black-bgc{
+        background-color: #282c34;
+        color: #fff;
     }
 
     .echartsId2 {
