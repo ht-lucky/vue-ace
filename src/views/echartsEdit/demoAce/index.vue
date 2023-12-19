@@ -2,12 +2,13 @@
     <div class="box">
         <div>
 
-            <div @click="renderEchartsDemo">执行</div>
+           
             <div class="wrap">
 
                 <div id="ace" ref="ace"></div>
 
-                <div  class="echartsId">
+                <div class="echartsId">
+                    <div @click="renderEchartsDemo" class="class-text">执行 <span style="color: red;" v-if="errorIs">（代码错误）</span> </div>
                     <div :id="$route.query.id" class="echartsId2">
 
                     </div>
@@ -35,11 +36,27 @@ import 'ace-builds/src-noconflict/mode-mysql';// mysql模式的包
 import 'ace-builds/src-noconflict/theme-kuroir'
 import 'ace-builds/src-noconflict/mode-javascript';// mysql模式的包
 import 'ace-builds/src-noconflict/theme-xcode';// xcode,(亮白)的主题样式
-import "ace-builds/src-noconflict/theme-twilight";// twilight,(暗黑)的主题样式
+// import "ace-builds/src-noconflict/theme-twilight";// twilight,(暗黑)的主题样式
 import { initLine01, initLine02 } from '../echarts/line.js'
+import {
+    initBar01,
+    initBar02,
+    initBar03,
+    initBar04,
+    initBar05,
+    initBar06,
+    initBar07,
+    initBar08,
+    initBar09,
+    initBar10,
+    initBar11,
+} from "../echarts/bar";
 import 'ace-builds/webpack-resolver'; // 左侧提示错误信息 需要下载file-loader
 import * as echarts from "echarts";
+import 'echarts-liquidfill';
+import * as utils from '../../utils'
 window.echarts = echarts
+window.utils = utils
 export default {
     props: [],
     data() {
@@ -49,9 +66,22 @@ export default {
             echartsObject: {
                 initLine01,
                 initLine02,
+
+                initBar01,
+                initBar02,
+                initBar03,
+                initBar04,
+                initBar05,
+                initBar06,
+                initBar07,
+                initBar08,
+                initBar09,
+                initBar10,
+                initBar11,
             },
             annotaions: [],
-            errorList: [],
+            errorIs: false,
+            
         };
     },
 
@@ -64,7 +94,7 @@ export default {
             maxLines: 70, // 最大行数，超过会自动出现滚动条
             minLines: 12, // 最小行数，还未到最大行数时，编辑器会自动伸缩大小
             fontSize: 14, // 编辑器内字体大小
-            theme: 'ace/theme/kuroir', // 默认设置的主题
+            theme: 'ace/theme-xcode', // 默认设置的主题
             mode: 'ace/mode/json5', // 默认设置的语言模式
             tabSize: 4,// 制表符设置为 4 个空格大小
             readOnly: false //只读
@@ -76,8 +106,9 @@ export default {
         this.editor.on('change', (val) => {
             // let str = this.editor.setValue(this.item, -1)
             this.item = this.editor.getValue()
+            this.errorIs=false
             if (this.item) {
-                // this.validateJavasriptSyntax(this.item)
+                this.validateJavasriptSyntax(this.item)
             }
         })
         this.editor.setOption("mode", "ace/mode/javascript");
@@ -159,7 +190,9 @@ export default {
                 annotationList.push(annotation);
                 this.annotaions = annotationList;
                 // console.log(annotationList);
-                this.editor.getSession().setAnnotations(annotationList);
+                // this.editor.getSession().setAnnotations(annotationList);
+                this.errorIs=true
+                console.log(111222);
             }
         },
         checkEsprima(code) {
@@ -186,9 +219,12 @@ export default {
             return javascript
         },
         renderEchartsDemo() {
+            document.getElementById(this.id).removeAttribute('_echarts_instance_');
             let value = new Function(`return ${this.item}`)
             const option = value()
             option(this.id)
+
+            
         }
     },
 
@@ -200,8 +236,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.box {
-}
+.box {}
 
 .wrap {
     display: flex;
@@ -213,18 +248,26 @@ export default {
     #ace {
         flex: 1;
         min-height: 97vh;
-       
-    }
 
+    }
     .echartsId {
         background-color: #282c34;
-        padding: 30px;
-       
+        padding: 100px;
+        position: relative;
+        .class-text{
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: #fff;
+            cursor: pointer;
+        }
+
     }
-    .echartsId2{
+
+    .echartsId2 {
         min-height: 85vh;
-        border: 1px solid #ccc;
-        
+        // border: 1px solid #4e4e4e;
+
     }
 
     // /deep/ .ace_editor .ace-kuroir {
