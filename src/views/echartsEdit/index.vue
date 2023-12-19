@@ -9,31 +9,32 @@
                 {{ item }}
             </div>
         </div>
-
         <div className="gallery">
             <div v-show="choosed == '折线图' || choosed == '100'">
-
                 <div class="gallery-title">折线图</div>
                 <div class="gallery-wrapper">
-    
                     <div v-for="item in line" class="gallery-item" @click="goPage(item)">
                         <div class="gallery-item__chart" :id='item'></div>
                     </div>
-    
                 </div>
             </div>
             <div v-show="choosed == '柱状图' || choosed == '100'">
                 <div class="gallery-title">柱状图</div>
                 <div class="gallery-wrapper">
-    
                     <div v-for="item in bar" class="gallery-item" @click="goPage(item)">
                         <div class="gallery-item__chart" :id='item'></div>
                     </div>
-    
+                </div>
+            </div>
+            <div v-show="choosed == '漏斗图' || choosed == '100'">
+                <div class="gallery-title">漏斗图</div>
+                <div class="gallery-wrapper">
+                    <div v-for="item in funnel" class="gallery-item" @click="goPage(item)">
+                        <div class="gallery-item__chart" :id='item'></div>
+                    </div>
                 </div>
             </div>
         </div>
-
 
     </div>
 </template>
@@ -53,11 +54,12 @@ import {
     initBar10,
     initBar11,
 } from "./echarts/bar";
+import {initFunnelO1} from './echarts/funnel.js'
 export default {
     props: [],
     data() {
         return {
-            topList: ['折线图', '柱状图'],
+            topList: ['折线图', '柱状图','漏斗图'],
             choosed: '100',
             echartsObject: {
                 initLine01,
@@ -73,9 +75,11 @@ export default {
                 initBar09,
                 initBar10,
                 initBar11,
+                initFunnelO1
             },
             line: ['initLine01', 'initLine02'],
-            bar: ['initBar01', 'initBar02', 'initBar03', 'initBar04', 'initBar05', 'initBar06', 'initBar07', 'initBar08', 'initBar09', 'initBar10', 'initBar11']
+            bar: ['initBar01', 'initBar02', 'initBar03', 'initBar04', 'initBar05', 'initBar06', 'initBar07', 'initBar08', 'initBar09', 'initBar10', 'initBar11'],
+            funnel:['initFunnelO1']
         };
     },
 
@@ -86,6 +90,7 @@ export default {
         this.$nextTick(() => {
             this.initLine()
             this.initBar()
+            this.initFunnel()
         })
     },
 
@@ -97,6 +102,11 @@ export default {
         },
         initBar(){
             this.bar.forEach(item => {
+                this.echartsObject[item](item)
+            })
+        },
+        initFunnel(){
+            this.funnel.forEach(item => {
                 this.echartsObject[item](item)
             })
         },

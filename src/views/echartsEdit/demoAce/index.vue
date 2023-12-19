@@ -1,16 +1,11 @@
 <template>
     <div class="box">
         <div>
-
-           
             <div class="wrap">
-
                 <div id="ace" ref="ace"></div>
-
                 <div class="echartsId">
                     <div @click="renderEchartsDemo" class="class-text">执行 <span style="color: red;" v-if="errorIs">（代码错误）</span> </div>
                     <div :id="$route.query.id" class="echartsId2">
-
                     </div>
                 </div>
             </div>
@@ -51,6 +46,7 @@ import {
     initBar10,
     initBar11,
 } from "../echarts/bar";
+import {initFunnelO1} from '../echarts/funnel.js'
 import 'ace-builds/webpack-resolver'; // 左侧提示错误信息 需要下载file-loader
 import * as echarts from "echarts";
 import 'echarts-liquidfill';
@@ -78,6 +74,7 @@ export default {
                 initBar09,
                 initBar10,
                 initBar11,
+                initFunnelO1
             },
             annotaions: [],
             errorIs: false,
