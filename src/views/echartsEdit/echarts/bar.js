@@ -1,6 +1,6 @@
 import * as echarts from 'echarts'
-import {fontSize, TOOLTIP_STYLE, GRID, _cnDic, _divisor} from "../../utils";
-import {max} from 'lodash';
+import { fontSize, TOOLTIP_STYLE, GRID, _cnDic, _divisor, intervalFnc, maxFnc, fontChart } from "../../utils";
+import { max } from 'lodash';
 import 'echarts-liquidfill';
 
 export const initBar01 = (dom) => {
@@ -232,10 +232,10 @@ export const initBar01 = (dom) => {
                                     offset: 0,
                                     color: '#28B4F0'
                                 },
-                                    {
-                                        offset: 0.8,
-                                        color: '#305DBA'
-                                    }
+                                {
+                                    offset: 0.8,
+                                    color: '#305DBA'
+                                }
                                 ])
                             }
                         }, {
@@ -254,10 +254,10 @@ export const initBar01 = (dom) => {
                                     offset: 0,
                                     color: '#39C4FF'
                                 },
-                                    {
-                                        offset: 0.8,
-                                        color: '#2866E5'
-                                    }
+                                {
+                                    offset: 0.8,
+                                    color: '#2866E5'
+                                }
                                 ])
                             }
                         }, {
@@ -276,10 +276,10 @@ export const initBar01 = (dom) => {
                                     offset: 0,
                                     color: '#2BCAF6'
                                 },
-                                    {
-                                        offset: 1,
-                                        color: '#2BCAF6'
-                                    }
+                                {
+                                    offset: 1,
+                                    color: '#2BCAF6'
+                                }
                                 ])
                             }
                         }]
@@ -1816,13 +1816,13 @@ export const initBar06 = (dom) => {
 
 export const initBar07 = (dom) => {
     var listData = [
-        {value: 10, name: '18岁以下'},
-        {value: 5, name: '18-24岁'},
-        {value: 8, name: '25-34岁'},
-        {value: 2, name: '35-44岁'},
-        {value: 83, name: '45-54岁'},
-        {value: 22, name: '55-64岁'},
-        {value: 22, name: '65岁以上'},
+        { value: 10, name: '18岁以下' },
+        { value: 5, name: '18-24岁' },
+        { value: 8, name: '25-34岁' },
+        { value: 2, name: '35-44岁' },
+        { value: 83, name: '45-54岁' },
+        { value: 22, name: '55-64岁' },
+        { value: 22, name: '65岁以上' },
     ];
 
     let option = {
@@ -2051,7 +2051,7 @@ export const initBar08 = (dom) => {
                 name: 'leftCircle',
                 type: 'pictorialBar',
                 symbolSize: [6, 6],
-                tooltip: {show: false},
+                tooltip: { show: false },
                 symbolOffset: [1, 0],
                 z: 3,
                 symbolPosition: 'end',
@@ -2062,7 +2062,7 @@ export const initBar08 = (dom) => {
                 data: [0, 10, 30, 5, 10, 0]
             },
             {
-                tooltip: {show: false},
+                tooltip: { show: false },
                 //最右面圆片
                 name: 'rightCircle',
                 type: 'pictorialBar',
@@ -2091,7 +2091,7 @@ export const initBar08 = (dom) => {
                         color: 'transparent'
                     }
                 },
-                tooltip: {show: false},
+                tooltip: { show: false },
                 data: [0, 10, 30, 5, 10, 0]
             },
             {
@@ -2117,32 +2117,32 @@ export const initBar08 = (dom) => {
                     arag: 3,
                     myData: '事项1' // 传入数据，变量名自己定
                 },
-                    {
-                        value: 20,
-                        arag: 3,
-                        myData: '事项2'
-                    },
-                    {
-                        value: 36,
-                        arag: 3,
-                        myData: '事项3'
-                    },
-                    {
-                        value: 10,
-                        arag: 3,
-                        myData: '事项4'
-                    },
+                {
+                    value: 20,
+                    arag: 3,
+                    myData: '事项2'
+                },
+                {
+                    value: 36,
+                    arag: 3,
+                    myData: '事项3'
+                },
+                {
+                    value: 10,
+                    arag: 3,
+                    myData: '事项4'
+                },
 
-                    {
-                        value: 23,
-                        arag: 3,
-                        myData: '事项5'
-                    },
-                    {
-                        value: 23,
-                        arag: 3,
-                        myData: '事项6'
-                    },
+                {
+                    value: 23,
+                    arag: 3,
+                    myData: '事项5'
+                },
+                {
+                    value: 23,
+                    arag: 3,
+                    myData: '事项6'
+                },
                 ]
             }
         ]
@@ -2263,13 +2263,13 @@ export const initBar10 = (dom) => {
         value: 0.75,
         name: '个人数评',
         subs: [
-            {name: '工作会议', value: 31},
-            {name: '报告提交', value: 31},
-            {name: '考勤管理', value: 31},
-            {name: '学习培训', value: 31},
-            {name: '群众走访', value: 31},
-            {name: '事件到场', value: 31},
-            {name: '任务完成', value: 31},
+            { name: '工作会议', value: 31 },
+            { name: '报告提交', value: 31 },
+            { name: '考勤管理', value: 31 },
+            { name: '学习培训', value: 31 },
+            { name: '群众走访', value: 31 },
+            { name: '事件到场', value: 31 },
+            { name: '任务完成', value: 31 },
         ]
     }
 
@@ -2370,8 +2370,8 @@ export const initBar11 = (dom) => {
         },
         legend: {
             data: [
-                {name: '核算数量', itemStyle: {color: '#00FFFF'}},
-                {name: '项目总量', itemStyle: {color: '#4F89FF'}}
+                { name: '核算数量', itemStyle: { color: '#00FFFF' } },
+                { name: '项目总量', itemStyle: { color: '#4F89FF' } }
             ],
             icon: 'rect',
             top: '5%',
@@ -2504,6 +2504,930 @@ export const initBar11 = (dom) => {
             },
         ]
     };
+    let chartDom = document.getElementById(dom);
+    const chart = echarts.init(chartDom);
+    chart.setOption(option)
+    window.addEventListener("resize", () => {
+        chart.resize();
+    })
+}
+export const initBar12 = (dom) => {
+    const option = {
+        title: {
+            text: '',
+        },
+        tooltip: {
+            ...TOOLTIP_STYLE, ...{
+                trigger: 'axis',
+            }
+        },
+        grid: {
+            left: '40',
+            right: '0',
+            bottom: '30',
+            top: '44',
+        },
+        yAxis: {
+            splitLine: { // 分隔线
+                show: true, // 默认显示，属性show控制显示与否
+                lineStyle: { // 属性lineStyle（详见lineStyle）控制线条样式
+                    color: 'rgba(3, 49, 77, 1)',
+                    width: 1,
+                    type: 'dashed'
+                }
+            },
+            axisLine: {
+                show: false,
+                lineStyle: {
+                    color: 'rgba(3, 49, 77, 1)',
+                },
+            },
+            axisLabel: {
+                show: true,
+                textStyle: {
+                    color: 'rgba(112, 151, 215, 1)',
+                    fontSize: fontSize(0.12),
+                }
+            },
+        },
+        xAxis: {
+            axisLabel: {
+                show: true,
+                textStyle: {
+                    color: 'rgba(124, 147, 200, 1)',
+                    fontSize: fontSize(0.12),
+                }
+            },
+            axisLine: {
+                show: true,
+                lineStyle: {
+                    color: 'rgba(3, 49, 77, 1)',
+                },
+            },
+            data: ['杭州', '宁波', '温州', '绍兴', '嘉兴', '湖州', '金华', '台州', '衢州', '丽水', '舟山']
+        },
+        series: [
+            {
+                // 上半截柱子
+                name: '2019',
+                type: 'bar',
+                barWidth: '18',
+                barGap: '-100%',
+                z: 0,
+                itemStyle: {
+                    //lenged文本
+                    opacity: 1,
+                    color: function (params) {
+                        return new echarts.graphic.LinearGradient(
+                            0,
+                            0,
+                            1,
+                            0,
+                            [
+                                {
+                                    offset: 0,
+                                    color: 'rgba(51,80,165,0.4)', // 0% 处的颜色
+                                },
+                                {
+                                    offset: 1,
+                                    color: 'rgba(51,80,165,0.4)', // 100% 处的颜色
+                                },
+                            ],
+                            false
+                        );
+                    },
+                },
+                data: [50, 50, 50, 50, 50],
+            },
+            {
+                //最上面圆片
+                name: '',
+                type: 'pictorialBar',
+                symbolSize: [18, 4],
+                symbolOffset: [0, -2],
+                z: 3,
+                symbolPosition: 'end',
+                itemStyle: {
+                    color: '#224C94',
+                    opacity: 1,
+                },
+                data: [50, 50, 50, 50, 50],
+            },
+            {
+                // 下半截柱子
+                name: '2020',
+                type: 'bar',
+                barWidth: 18,
+                barGap: '-100%',
+                itemStyle: {
+                    //lenged文本
+                    opacity: 1,
+                    color: function (params) {
+                        return new echarts.graphic.LinearGradient(
+                            0,
+                            0,
+                            0,
+                            1,
+                            [
+                                {
+                                    offset: 0,
+                                    color: '#21DDFC', // 0% 处的颜色
+                                },
+                                {
+                                    offset: 1,
+                                    color: 'rgba(21,91,253,0)', // 100% 处的颜色
+                                },
+                            ],
+                            false
+                        );
+                    },
+                },
+                data: [15, 20.2, 9.5, 4.2, 2.3, 15, 20.2, 9.5, 4.2, 2.3, 4.2, 2.3],
+            },
+            {
+                //数据圆片
+                name: '',
+                type: 'pictorialBar',
+                symbolSize: [18, 4],
+                symbolOffset: [0, -2],
+                z: 3,
+                itemStyle: {
+                    opacity: 1,
+                    color: 'rgba(185, 243, 255, 1)'
+                },
+                symbolPosition: 'end',
+                data: [15, 20.2, 9.5, 4.2, 2.3, 15, 20.2, 9.5, 4.2, 2.3, 4.2, 2.3],
+                label: {
+                    show: false,
+                    position: 'left',
+                    distance: -770,
+                    formatter: '{c}%'
+                },
+            },
+            {
+                //最底下圆片
+                name: '',
+                type: 'pictorialBar',
+                symbolSize: [18, 4],
+                symbolOffset: [0, 0],
+                z: 3,
+                itemStyle: {
+                    opacity: 1,
+                    color: 'rgba(26, 51, 124, 1)'
+                    //color: '#000'
+                },
+                symbolPosition: 'end',
+                data: [0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2],
+            },
+        ],
+    };
+    let chartDom = document.getElementById(dom);
+    const chart = echarts.init(chartDom);
+    chart.setOption(option)
+    window.addEventListener("resize", () => {
+        chart.resize();
+    })
+}
+export const initBar13 = (dom) => {
+    const option = {
+        title: {
+            text: '',
+        },
+        tooltip: {
+            ...TOOLTIP_STYLE, ...{
+                trigger: 'axis',
+            }
+        },
+        grid: {
+            left: '40',
+            right: '0',
+            bottom: '30',
+            top: '24',
+        },
+        yAxis: {
+            splitLine: { // 分隔线
+                show: true, // 默认显示，属性show控制显示与否
+                lineStyle: { // 属性lineStyle（详见lineStyle）控制线条样式
+                    color: 'rgba(3, 49, 77, 1)',
+                    width: 1,
+                    type: 'dashed'
+                }
+            },
+            axisLine: {
+                show: false,
+                lineStyle: {
+                    color: 'rgba(3, 49, 77, 1)',
+                },
+            },
+            axisLabel: {
+                show: true,
+                textStyle: {
+                    color: 'rgba(112, 151, 215, 1)',
+                    fontSize: fontSize(0.12),
+                }
+            },
+        },
+        xAxis: {
+            axisLabel: {
+                show: true,
+                textStyle: {
+                    color: 'rgba(124, 147, 200, 1)',
+                    fontSize: fontSize(0.12),
+                }
+            },
+            axisLine: {
+                show: true,
+                lineStyle: {
+                    color: 'rgba(3, 49, 77, 1)',
+                },
+            },
+            data: ['杭州', '宁波', '温州', '绍兴', '嘉兴', '湖州', '金华', '台州', '衢州', '丽水', '舟山']
+        },
+        series: [
+            {
+                // 上半截柱子
+                name: '2019',
+                type: 'bar',
+                barWidth: '18',
+                barGap: '-100%',
+                z: 0,
+                itemStyle: {
+                    //lenged文本
+                    opacity: 1,
+                    color: function (params) {
+                        return new echarts.graphic.LinearGradient(
+                            0,
+                            0,
+                            1,
+                            0,
+                            [
+                                {
+                                    offset: 0,
+                                    color: 'rgba(51,80,165,0.4)', // 0% 处的颜色
+                                },
+                                {
+                                    offset: 1,
+                                    color: 'rgba(51,80,165,0.4)', // 100% 处的颜色
+                                },
+                            ],
+                            false
+                        );
+                    },
+                },
+                data: [100, 100, 100, 100, 100, {
+                    value: -100,
+                    itemStyle: {
+                        color: 'rgba(255, 181, 131, 0.1300)'
+                    }
+                }, {
+                        value: -100,
+                        itemStyle: {
+                            color: 'rgba(255, 181, 131, 0.1300)'
+                        }
+                    }],
+            },
+            {
+                //最上面圆片
+                name: '',
+                type: 'pictorialBar',
+                symbolSize: [18, 4],
+                symbolOffset: [0, -2],
+                z: 3,
+                symbolPosition: 'end',
+                itemStyle: {
+                    color: '#224C94',
+                    opacity: 1,
+                },
+                data: [100, 100, 100, 100, 100, {
+                    value: -100,
+                    itemStyle: {
+                        color: 'rgba(44, 41, 65, 1)'
+                    }
+                }, {
+                        value: -100,
+                        itemStyle: {
+                            color: 'rgba(44, 41, 65, 1)'
+                        }
+                    }],
+            },
+            {
+                // 下半截柱子
+                name: '2020',
+                type: 'bar',
+                barWidth: 18,
+                barGap: '-100%',
+                itemStyle: {
+                    opacity: 1,
+                    color: function (params) {
+                        if (params.data < 0) {
+                            return new echarts.graphic.LinearGradient(
+                                0,
+                                1,
+                                0,
+                                0,
+                                [
+                                    {
+                                        offset: 0,
+                                        color: 'rgba(244, 176, 128, 1)', // 0% 处的颜色
+                                    },
+                                    {
+                                        offset: 1,
+                                        color: 'rgba(244, 176, 128, 0)', // 100% 处的颜色
+                                    },
+                                ],
+                                false
+                            );
+                        } else {
+                            return new echarts.graphic.LinearGradient(
+                                0,
+                                0,
+                                0,
+                                1,
+                                [
+                                    {
+                                        offset: 0,
+                                        color: '#21DDFC', // 0% 处的颜色
+                                    },
+                                    {
+                                        offset: 1,
+                                        color: 'rgba(21,91,253,0)', // 100% 处的颜色
+                                    },
+                                ],
+                                false
+                            );
+                        }
+                    },
+                },
+                data: [32.1, 20.2, 9.5, 4.2, 20, -50.3, -30],
+            },
+            {
+                //数据圆片
+                name: '',
+                type: 'pictorialBar',
+                symbolSize: [18, 4],
+                symbolOffset: [0, -2],
+                z: 3,
+                itemStyle: {
+                    color: 'rgba(185, 243, 255, 1)'
+                },
+                symbolPosition: 'end',
+                data: [
+                    32.1, 20.2, 9.5, 4.2, 20,
+                    {
+                        value: -50.3,
+                        symbolOffset: [0, 2],
+                        itemStyle: {
+                            color: 'rgba(255, 203, 168, 1)'
+                        },
+                    },
+                    {
+                        value: -30,
+                        symbolOffset: [0, 2],
+                        itemStyle: {
+                            color: 'rgba(255, 203, 168, 1)'
+                        },
+                    }
+                ],
+                label: {
+                    show: false,
+                    position: 'left',
+                    distance: -770,
+                    formatter: '{c}%'
+                },
+            },
+            {
+                //最底下圆片
+                name: '',
+                type: 'pictorialBar',
+                symbolSize: [18, 4],
+                symbolOffset: [0, 0],
+                z: 3,
+                itemStyle: {
+                    opacity: 1,
+                    color: 'rgba(26, 51, 124, 1)'
+                },
+                symbolPosition: 'end',
+                data: [
+                    {
+                        value: 1,
+                        itemStyle: {
+                            color: 'rgba(26, 51, 124, 1)'
+                        }
+                    },
+                    {
+                        value: 1,
+                        itemStyle: {
+                            color: 'rgba(26, 51, 124, 1)'
+                        }
+                    },
+                    {
+                        value: 1,
+                        itemStyle: {
+                            color: 'rgba(26, 51, 124, 1)'
+                        }
+                    },
+                    {
+                        value: 1,
+                        itemStyle: {
+                            color: 'rgba(26, 51, 124, 1)'
+                        }
+                    },
+                    {
+                        value: 1,
+                        itemStyle: {
+                            color: 'rgba(26, 51, 124, 1)'
+                        }
+                    },
+                    {
+                        value: 1,
+                        itemStyle: {
+                            color: 'rgba(116, 96, 107, 1)'
+                        }
+                    },
+                    {
+                        value: 1,
+                        itemStyle: {
+                            color: 'rgba(116, 96, 107, 1)'
+                        }
+                    }
+                ],
+            },
+        ],
+    };
+    let chartDom = document.getElementById(dom);
+    const chart = echarts.init(chartDom);
+    chart.setOption(option)
+    window.addEventListener("resize", () => {
+        chart.resize();
+    })
+}
+export const initBar14 = (dom) => {
+    const option = {
+        tooltip: {
+            ...TOOLTIP_STYLE, ...{
+                trigger: 'axis',
+            },
+            axisPointer: {
+                type: 'none'
+            },
+            formatter: function (params) {
+                return params[0].marker + params[0].name + ': ' + params[0].value;
+            }
+        },
+        grid: {
+            top: '50',
+            left: '1%',
+            right: '4%',
+            bottom: '55',
+            containLabel: true
+        },
+        xAxis: {
+            data: ['项目1', '项目2', '项目3', '项目4', '项目5', '项目6'],
+            axisTick: { show: false },
+            axisLine: {
+                show: true,
+                lineStyle: {
+                    color: 'rgba(3, 49, 77, 1)',
+                },
+            },
+            axisLabel: {
+                color: '#fff'
+            }
+        },
+        yAxis: {
+            interval: intervalFnc([123, 60, 25, 71, 33, 51]),
+            max: maxFnc([123, 60, 25, 71, 33, 51]),
+            min: 0,
+            splitNumber: 4,
+            axisLabel: {
+                color: '#fff',
+                fontSize: fontSize(0.12)
+            },
+            splitLine: {
+                lineStyle: {
+                    type: 'dashed',
+                    color: 'rgba(3, 49, 77, 1)',
+                }
+            },
+
+            axisLine: {
+                show: true,
+                lineStyle: {
+                    color: 'rgba(3, 49, 77, 1)',
+                },
+                symbol: ['none', 'arrow'],     // 轴线两端箭头，两个值，none表示没有箭头，arrow表示有箭头
+            }
+        },
+        series: [
+            {
+                label: {
+                    show: true,
+                    position: 'top',
+                    fontSize: fontSize(0.12),
+                    color: '#fff'
+                },
+                name: 'hill',
+                type: 'pictorialBar',
+                barCategoryGap: '-20%',
+                symbol: 'path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z',
+                itemStyle: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                        { offset: 0, color: 'rgba(228, 187, 40, 1)' },
+                        { offset: 1, color: 'rgba(205, 166, 29, 0.3)' }
+                    ])
+                },
+                emphasis: {
+                    itemStyle: {
+                        opacity: 1
+                    }
+                },
+
+                data: [123, 60, 25, 71, 33, 51],
+                z: 10
+            }
+        ]
+    };
+    let chartDom = document.getElementById(dom);
+    const chart = echarts.init(chartDom);
+    chart.setOption(option)
+    window.addEventListener("resize", () => {
+        chart.resize();
+    })
+}
+export const initBar15 = (dom) => {
+    const option = {
+        tooltip: {
+            trigger: 'axis',
+            ...TOOLTIP_STYLE
+        },
+        grid: {
+            left: '50',
+            right: '10',
+            bottom: '50',
+            top: '40',
+        },
+        // legend: {
+        //     top: '6%',
+        //     right: '1%',
+        //     icon: 'circle',
+        //     textStyle: {
+        //         fontSize: fontChart(1.4),
+        //         color: '#fff'
+        //     },
+        //     data: ['失业人口', '适龄人口占比']
+        // },
+        xAxis: [{
+            type: 'category',
+            data: ['商业用地', '综合用地', '住宅用地', '工业用地', '其他用地'],
+            axisPointer: {
+                type: 'shadow'
+            },
+            axisLine: {
+                show: true,
+                lineStyle: {
+                    color: 'rgba(3, 49, 77, 1)',
+                },
+            },
+            axisLabel: {
+                show: true,
+                textStyle: {
+                    color: '#fff',
+                    fontSize: fontChart(1.2),
+
+                }
+            },
+        }],
+        yAxis: [{
+            interval: intervalFnc([200, 490, 700, 232, 256, 767, 136, 162, 326, 200, 644, 330]),
+            max: maxFnc([200, 490, 700, 232, 256, 767, 136, 162, 326, 200, 644, 330]),
+            show: true,
+            type: 'value',
+            splitLine: { // 分隔线
+                show: true, // 默认显示，属性show控制显示与否
+                lineStyle: { // 属性lineStyle（详见lineStyle）控制线条样式
+                    color: 'rgba(3, 49, 77, 1)',
+                    width: 1,
+                    type: 'dashed'
+                }
+            },
+            axisLine: {
+                show: true,
+                lineStyle: {
+                    color: 'rgba(3, 49, 77, 1)',
+                },
+                symbol: ['none', 'arrow'], // 轴线两端箭头，两个值，none表示没有箭头，arrow表示有箭头
+            },
+            axisLabel: {
+                show: true,
+                textStyle: {
+                    color: '#fff',
+                    fontSize: fontChart(1.2),
+
+                }
+            },
+        },],
+        series: [{
+            name: '失业人口',
+            type: 'bar',
+            tooltip: {
+                valueFormatter: function (value) {
+                    return value + ' ml';
+                }
+            },
+            barWidth: fontChart(1.8),
+            //设置柱状图渐变颜色
+            itemStyle: {
+                normal: {
+                    // 柱状图颜色
+                    color: params => {
+                        //  colorList是每根柱子的颜色，一组是一个渐变
+                        var colorList = [
+                            ['rgba(2,99,255,0)', 'rgba(2,99,255,1)'],
+                            ['rgba(2,99,255,0)', 'rgba(2,99,255,1)'],
+                            ['rgba(255,119,35, 0)', 'rgba(255,119,35, 1)'],
+                            ['rgba(142,48,255, 0)', 'rgba(142,48,255, 1)'],
+                            ['rgba(55,179,53, 0)', 'rgba(55,179,53, 1)'],
+                            ['rgba(185,46,42, 0)', 'rgba(185,46,42, 1)'],
+                            ['#F75271', '#754ABF']
+                        ]
+                        var index = params.dataIndex
+                        // 柱子个数超过colorList设置的个数，循环使用
+                        if (index >= colorList.length) {
+                            index = index - colorList.length
+                        }
+                        // 这里的this.$echarts是项目中的echarts示例，改成对应的名字就好
+                        return new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
+                            offset: 1,
+                            color: colorList[index][1]
+                        }, {
+                            offset: 0,
+                            color: colorList[index][0]
+                        }])
+                    },
+                    label: {
+                        show: true,
+                        position: 'top',
+                        textStyle: {
+                            color: '#fff',
+                            fontSize: fontChart(1.2),
+                        }
+                    }
+                }
+            },
+            data: [
+                200, 490, 700, 232, 256, 767, 136, 162, 326, 200, 644, 330
+            ]
+        },]
+    };
+    let chartDom = document.getElementById(dom);
+    const chart = echarts.init(chartDom);
+    chart.setOption(option)
+    window.addEventListener("resize", () => {
+        chart.resize();
+    })
+}
+export const initBar16 = (dom) => {
+    let maxData = 2000
+    const option = {
+        tooltip: {
+            trigger: 'axis',
+            ...TOOLTIP_STYLE
+        },
+
+        grid: {
+            left: '20',
+            right: '20',
+            bottom: '30',
+            top: '60',
+        },
+        xAxis: {
+            // boundaryGap: true, // 默认，坐标轴留白策略
+            axisLine: { // 坐标轴轴线相关设置。数学上的x轴
+                show: true,
+                lineStyle: {
+                    color: '#263D6A'
+                }
+            },
+
+            axisLabel: {
+                show: true,
+                textStyle: {
+                    color: '#fff',
+                    fontSize: fontChart(1.4),
+                }
+            },
+
+            splitLine: {
+                show: false
+            },
+            axisTick: {
+                show: false,
+                alignWithLabel: true
+            },
+            data: ['杭州', '宁波', '温州', '绍兴', '嘉兴', '湖州', '金华', '台州', '衢州', '丽水', '舟山']
+        },
+        yAxis: {
+            max: maxData,
+            show: false,
+        },
+        series: [{
+            type: 'pictorialBar',
+            symbol: 'rect',
+            symbolSize: [15, 4],
+            color: '#7f71e2',
+            symbolRepeat: true,
+            symbolBoundingData: maxData,
+            itemStyle: {
+                normal: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                        offset: 0,
+                        color: 'rgba(0, 214, 246, 1)',
+                    },
+                    {
+                        offset: 1,
+                        color: 'rgba(3, 209, 160, 1)',
+                    },
+                    ]),
+                },
+            },
+            data: [{
+                value: 120,
+
+            }, {
+                value: 110,
+
+            }, {
+                value: 130,
+
+            }, {
+                value: 450,
+
+            }, {
+                value: 345,
+
+            }, {
+                value: 784,
+
+            }, {
+                value: 103,
+
+            }, {
+                value: 403,
+
+            }, {
+                value: 563,
+
+            }, {
+                value: 132,
+
+            }, {
+                value: 1321,
+
+            }],
+            z: 10
+        }, {
+            type: 'pictorialBar',
+            animationDuration: 0,
+            symbolRepeat: 'fixed', //使图形元素重复
+            symbol: 'rect',
+            symbolSize: [15, 4],
+            symbolBoundingData: maxData,
+            itemStyle: {
+                color: '#102946'
+            },
+            data: [{
+                value: 120,
+
+            }, {
+                value: 110,
+
+            }, {
+                value: 130,
+
+            }, {
+                value: 450,
+
+            }, {
+                value: 345,
+
+            }, {
+                value: 784,
+
+            }, {
+                value: 103,
+
+            }, {
+                value: 403,
+
+            }, {
+                value: 563,
+
+            }, {
+                value: 132,
+
+            }, {
+                value: 1321,
+
+            }],
+            markPoint: {
+                label: {
+                    show: true,
+                    formatter: '{c}',
+                    offset: [0, fontChart(0.14)],
+                    fontSize: fontChart(1.2)
+                },
+                itemStyle: {
+                    borderColor: "#fff",
+                    shadowColor: "#b3b2b2",
+                    shadowBlur: 10,
+                    borderWidth: 2,
+                },
+                symbolOffset: [0, fontChart(-2.6)],
+                symbol: 'image://' + require('./img/zzt-icon.png'),
+                symbolSize: [fontChart(3.2), fontChart(1.8)],
+                data: [{
+                    value: 120,
+                    xAxis: 0,
+                    yAxis: maxData,
+                    itemStyle: {
+                        color: '#7f71e2'
+                    },
+                }, {
+                    value: 110,
+                    xAxis: 1,
+                    yAxis: maxData,
+                    itemStyle: {
+                        color: '#4aa1e1'
+                    }
+                }, {
+                    value: 130,
+                    xAxis: 2,
+                    yAxis: maxData,
+                    itemStyle: {
+                        color: '#6494db'
+                    }
+                }, {
+                    value: 450,
+                    xAxis: 3,
+                    yAxis: maxData,
+                    itemStyle: {
+                        color: '#159be4'
+                    }
+                }, {
+                    value: 345,
+                    xAxis: 4,
+                    yAxis: maxData,
+                    itemStyle: {
+                        color: '#4ebcff'
+                    }
+                }, {
+                    value: 784,
+                    xAxis: 5,
+                    yAxis: maxData,
+                    itemStyle: {
+                        color: '#05d4b5'
+                    }
+                }, {
+                    value: 103,
+                    xAxis: 6,
+                    yAxis: maxData,
+                    itemStyle: {
+                        color: '#2fcd97'
+                    }
+                }, {
+                    value: 403,
+                    xAxis: 7,
+                    yAxis: maxData,
+                    itemStyle: {
+                        color: '#23d2c9'
+                    }
+                }, {
+                    value: 563,
+                    xAxis: 8,
+                    yAxis: maxData,
+                    itemStyle: {
+                        color: '#80d985'
+                    }
+                }, {
+                    value: 132,
+                    xAxis: 9,
+                    yAxis: maxData,
+                    itemStyle: {
+                        color: '#a6c34c'
+                    }
+                }, {
+                    value: 1321,
+                    xAxis: 10,
+                    yAxis: maxData,
+                    itemStyle: {
+                        color: '#a6c34c'
+                    }
+                }]
+            },
+            z: 5
+        }]
+
+    }
     let chartDom = document.getElementById(dom);
     const chart = echarts.init(chartDom);
     chart.setOption(option)

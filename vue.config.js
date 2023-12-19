@@ -2,7 +2,7 @@ const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
     devServer: {
         port: 2345,
-        host: 'localhost',
+        host: 'localhost',//0.0.0.0
         https: false,
         open: true,
         allowedHosts: 'all'

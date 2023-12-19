@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import {echartsObject, line, bar, funnel, gauge, hxt, pie,} from './dics/index.js'
+import { echartsObject, line, bar, funnel, gauge, hxt, pie, } from './dics/index.js'
 export default {
     props: [],
     data() {
@@ -98,10 +98,12 @@ export default {
             window.addEventListener('scroll', function () {
                 for (let key in that.echartsObject) {
                     let echarts = document.getElementById(key)
-                    if (that.isElementInViewport(echarts) && !that.havedList.includes(key)) {
-                        document.getElementById(key).removeAttribute('_echarts_instance_');
-                        that.echartsObject[key](key)
-                        that.havedList.push(key)
+                    if (echarts) {
+                        if (that.isElementInViewport(echarts) && !that.havedList.includes(key)) {
+                            document.getElementById(key).removeAttribute('_echarts_instance_');
+                            that.echartsObject[key](key)
+                            that.havedList.push(key)
+                        }
                     }
                 }
             });
@@ -146,6 +148,17 @@ export default {
                         }
                     }
                 }
+                // window.addEventListener('scroll', function () {
+                //     for (let key in that.echartsObject) {
+                //         let echarts = document.getElementById(key)
+                //         if (echarts) {
+                //             if (that.isElementInViewport(echarts) && !that.havedList.includes(key)) {
+                //                 that.echartsObject[key](key)
+                //                 that.havedList.push(key)
+                //             }
+                //         }
+                //     }
+                // });
             })
 
         }
@@ -191,6 +204,7 @@ export default {
 .wrap {
     background-color: #282C34;
     min-height: 100vh;
+    padding-bottom: 200px;
 }
 
 .gallery-wrapper {
@@ -222,7 +236,9 @@ export default {
 }
 
 .gallery-item__chart {
-    height: 500px;
+    box-sizing: border-box;
+    height: 470px;
+    width: 470px;
 
 }
 </style>
