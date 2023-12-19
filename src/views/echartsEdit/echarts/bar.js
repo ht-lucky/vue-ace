@@ -213,7 +213,7 @@ export const initBar01 = (dom) => {
                 type: 'custom',
                 renderItem: (params, api) => {
                     const location = api.coord([api.value(0), api.value(1)])
-                    console.log(api, api.value(0), api.value(1))
+                    // console.log(api, api.value(0), api.value(1))
                     return {
                         type: 'group',
                         children: [{

@@ -54,12 +54,12 @@ import {
     initBar10,
     initBar11,
 } from "./echarts/bar";
-import {initFunnelO1} from './echarts/funnel.js'
+import { initFunnelO1 } from './echarts/funnel.js'
 export default {
     props: [],
     data() {
         return {
-            topList: ['折线图', '柱状图','漏斗图'],
+            topList: ['折线图', '柱状图', '漏斗图'],
             choosed: '100',
             echartsObject: {
                 initLine01,
@@ -79,7 +79,8 @@ export default {
             },
             line: ['initLine01', 'initLine02'],
             bar: ['initBar01', 'initBar02', 'initBar03', 'initBar04', 'initBar05', 'initBar06', 'initBar07', 'initBar08', 'initBar09', 'initBar10', 'initBar11'],
-            funnel:['initFunnelO1']
+            funnel: ['initFunnelO1'],
+            havedList:[]
         };
     },
 
@@ -87,29 +88,55 @@ export default {
 
     computed: {},
     mounted() {
+        let that = this
         this.$nextTick(() => {
-            this.initLine()
-            this.initBar()
-            this.initFunnel()
+            for (let key in that.echartsObject) {
+                let echarts = document.getElementById(key)
+                if (isElementInViewport(echarts)) {
+                    that.echartsObject[key](key)
+                    that.havedList.push(key)
+                }
+            }
+            window.addEventListener('scroll', function () {
+                for (let key in that.echartsObject) {
+                    let echarts = document.getElementById(key)
+                    if (isElementInViewport(echarts) && !that.havedList.includes(key)) {
+                        document.getElementById(key).removeAttribute('_echarts_instance_');
+                        that.echartsObject[key](key)
+                        that.havedList.push(key)
+                    }
+                }
+            });
         })
+
+        function isElementInViewport(el) {
+            var rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
     },
 
     methods: {
-        initLine() {
-            this.line.forEach(item => {
-                this.echartsObject[item](item)
-            })
-        },
-        initBar(){
-            this.bar.forEach(item => {
-                this.echartsObject[item](item)
-            })
-        },
-        initFunnel(){
-            this.funnel.forEach(item => {
-                this.echartsObject[item](item)
-            })
-        },
+        // initLine() {
+        //     this.line.forEach(item => {
+        //         this.echartsObject[item](item)
+        //     })
+        // },
+        // initBar() {
+        //     this.bar.forEach(item => {
+        //         this.echartsObject[item](item)
+        //     })
+        // },
+        // initFunnel() {
+        //     this.funnel.forEach(item => {
+        //         this.echartsObject[item](item)
+        //     })
+        // },
         goPage(item) {
             this.$router.push({
                 path: 'demoAce',
@@ -118,11 +145,11 @@ export default {
                 }
             })
         },
-        choosedMethod(item){
-            if(item == this.choosed){
+        choosedMethod(item) {
+            if (item == this.choosed) {
                 this.choosed = '100'
-            }else{
-                this.choosed=item
+            } else {
+                this.choosed = item
             }
         }
     },
