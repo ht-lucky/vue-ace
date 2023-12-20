@@ -26,6 +26,15 @@
                     </div>
                 </div>
             </div>
+
+            <div v-if="choosed == '漏斗图' || choosed == '100'">
+                <div class="gallery-title">漏斗图</div>
+                <div class="gallery-wrapper">
+                    <div v-for="item in funnel" class="gallery-item" @click="goPage(item)" :key="item">
+                        <div class="gallery-item__chart" :id='item'></div>
+                    </div>
+                </div>
+            </div>
             <div v-if="choosed == '饼图' || choosed == '100'">
                 <div class="gallery-title">饼图</div>
                 <div class="gallery-wrapper">
@@ -34,10 +43,10 @@
                     </div>
                 </div>
             </div>
-            <div v-if="choosed == '漏斗图' || choosed == '100'">
-                <div class="gallery-title">漏斗图</div>
+            <div v-if="choosed == '散点图' || choosed == '100'">
+                <div class="gallery-title">散点图</div>
                 <div class="gallery-wrapper">
-                    <div v-for="item in funnel" class="gallery-item" @click="goPage(item)" :key="item">
+                    <div v-for="item in scatter" class="gallery-item" @click="goPage(item)" :key="item">
                         <div class="gallery-item__chart" :id='item'></div>
                     </div>
                 </div>
@@ -72,12 +81,12 @@
 </template>
 
 <script>
-import { echartsObject, line, bar, funnel, gauge, hxt, pie,areaMap } from './dics/index.js'
+import { echartsObject, line, bar, funnel, gauge, hxt, pie, areaMap, scatter } from './dics/index.js'
 export default {
     props: [],
     data() {
         return {
-            topList: ['折线图', '柱状图', '饼图', '漏斗图', '仪表盘', '盒须图', '地图'],
+            topList: ['折线图', '柱状图', '饼图', '散点图', '漏斗图', '仪表盘', '盒须图', '地图'],
             choosed: '100',
             echartsObject,
             line,
@@ -87,6 +96,7 @@ export default {
             hxt,
             pie,
             areaMap,
+            scatter,
             havedList: []
         };
     },
