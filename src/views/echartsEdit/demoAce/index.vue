@@ -47,6 +47,8 @@ import {echartsObject} from '../dics/index.js'
 import * as utils from '../../utils'
 window.echarts = echarts
 window.utils = utils
+import huzhouMapJson from '../json/huzhou.json'
+window.mapJson = huzhouMapJson
 export default {
     props: [],
     data() {

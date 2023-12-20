@@ -58,18 +58,26 @@
                     </div>
                 </div>
             </div>
+            <div v-if="choosed == '地图' || choosed == '100'">
+                <div class="gallery-title">地图</div>
+                <div class="gallery-wrapper">
+                    <div v-for="item in areaMap" class="gallery-item" @click="goPage(item)" :key="item">
+                        <div class="gallery-item__chart" :id='item'></div>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
 </template>
 
 <script>
-import { echartsObject, line, bar, funnel, gauge, hxt, pie, } from './dics/index.js'
+import { echartsObject, line, bar, funnel, gauge, hxt, pie,areaMap } from './dics/index.js'
 export default {
     props: [],
     data() {
         return {
-            topList: ['折线图', '柱状图', '饼图', '漏斗图', '仪表盘', '盒须图'],
+            topList: ['折线图', '柱状图', '饼图', '漏斗图', '仪表盘', '盒须图', '地图'],
             choosed: '100',
             echartsObject,
             line,
@@ -78,6 +86,7 @@ export default {
             gauge,
             hxt,
             pie,
+            areaMap,
             havedList: []
         };
     },
@@ -148,17 +157,6 @@ export default {
                         }
                     }
                 }
-                // window.addEventListener('scroll', function () {
-                //     for (let key in that.echartsObject) {
-                //         let echarts = document.getElementById(key)
-                //         if (echarts) {
-                //             if (that.isElementInViewport(echarts) && !that.havedList.includes(key)) {
-                //                 that.echartsObject[key](key)
-                //                 that.havedList.push(key)
-                //             }
-                //         }
-                //     }
-                // });
             })
 
         }
