@@ -6,6 +6,13 @@ node_modules
 # local env files
 .env.local
 .env.*.local
+echarts1_6
+echarts7_12
+echarts13_18
+echarts19_24
+echarts25_30
+echarts31_36
+echarts37_42
 
 # Log files
 npm-debug.log*
