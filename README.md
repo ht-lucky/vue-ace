@@ -23,7 +23,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 echartsEdit 编辑器目录 
 echartsEdit demoAce ace编辑器
 echartsEdit dics 公用字典文件
-echartsEdit echarts echart方法集合
+echartsEdit echarts echart方法集合（含有多个特殊图表案例）
 ```
 ## 去除已渲染echarts 的id 可以重新渲染 （解决h5 echarts 第二次不渲染的问题）
 document.getElementById("echarts-part2").removeAttribute('_echarts_instance_');
