@@ -9,6 +9,8 @@ npm install
 ```
 npm run serve
 ```
+![Vue.js](https://img.shields.io/badge/vue.js-%234FC08D.svg?style=for-the-badge&logo=vue.js&logoColor=white)
+![Static Badge](https://img.shields.io/badge/vue)
 
 ### Compiles and minifies for production
 ```
