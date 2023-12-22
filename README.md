@@ -1,4 +1,4 @@
-# echarts-vue2
+# echarts-vue2  ace-edotor
 
 ## Project setup
 ```
