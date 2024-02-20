@@ -1,6 +1,7 @@
 import * as echarts from "echarts";
 import 'echarts-liquidfill';
 import * as utils from '../../utils'
+
 window.echarts = echarts
 window.utils = utils
 import { initLine01, initLine02, initLine03, initLine04, initLine05, initLine06, initLine07 } from '../echarts/line.js'
@@ -28,6 +29,7 @@ import { initHxt01 } from "../echarts/hxt";
 import {huzhouMap} from "../echarts/map";
 import { initPie01, initPie02, initPie03, initPie04, initPie05 } from "../echarts/pie";
 import { initScatter01} from "../echarts/scatter";
+import { initWordcloud01} from "../echarts/wordcloudCharts";
 export const echartsObject = {
     // 折线图
     initLine01,
@@ -65,6 +67,8 @@ export const echartsObject = {
     huzhouMap,
     // 散点图
     initScatter01,
+    //字云
+    initWordcloud01
 }
 export const line = ['initLine01', 'initLine02', 'initLine03', 'initLine04', 'initLine05', 'initLine06', 'initLine07']
 export const bar = ['initBar01', 'initBar02', 'initBar03', 'initBar04', 'initBar05', 'initBar06', 'initBar07', 'initBar08', 'initBar09',
@@ -75,5 +79,6 @@ export const hxt = ['initHxt01']
 export const pie = ['initPie01', 'initPie02', 'initPie03', 'initPie04', 'initPie05',]
 export const areaMap = ['huzhouMap']
 export const scatter = ['initScatter01']
+export const wordCloud = ['initWordcloud01']
 
 

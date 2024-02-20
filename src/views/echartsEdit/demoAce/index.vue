@@ -40,6 +40,7 @@ import 'ace-builds/src-noconflict/theme-xcode';// xcode,(亮白)的主题样式
 // import "ace-builds/src-noconflict/theme-twilight";// twilight,(暗黑)的主题样式
 import 'ace-builds/webpack-resolver'; // 左侧提示错误信息 需要下载file-loader
 import * as echarts from "echarts";
+import  "echarts-wordcloud";
 import 'echarts-liquidfill';
 
 import {echartsObject} from '../dics/index.js'

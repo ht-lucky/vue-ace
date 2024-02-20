@@ -75,18 +75,26 @@
                     </div>
                 </div>
             </div>
+            <div v-if="choosed == '词云' || choosed == '100'">
+                <div class="gallery-title">词云</div>
+                <div class="gallery-wrapper">
+                    <div v-for="item in wordCloud" class="gallery-item" @click="goPage(item)" :key="item">
+                        <div class="gallery-item__chart" :id='item'></div>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
 </template>
 
 <script>
-import { echartsObject, line, bar, funnel, gauge, hxt, pie, areaMap, scatter } from './dics/index.js'
+import { echartsObject, line, bar, funnel, gauge, hxt, pie, areaMap, scatter ,wordCloud} from './dics/index.js'
 export default {
     props: [],
     data() {
         return {
-            topList: ['折线图', '柱状图', '饼图', '散点图', '漏斗图', '仪表盘', '盒须图', '地图'],
+            topList: ['折线图', '柱状图', '饼图', '散点图', '漏斗图', '仪表盘', '盒须图', '地图','词云'],
             choosed: '100',
             echartsObject,
             line,
@@ -97,6 +105,7 @@ export default {
             pie,
             areaMap,
             scatter,
+            wordCloud,
             havedList: []
         };
     },
@@ -106,7 +115,7 @@ export default {
     computed: {},
     mounted() {
         let that = this
-        this.$nextTick(() => {
+        that.$nextTick(() => {
             for (let key in that.echartsObject) {
                 let echarts = document.getElementById(key)
                 if (that.isElementInViewport(echarts)) {
