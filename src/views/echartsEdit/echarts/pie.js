@@ -102,7 +102,7 @@ export const initPie01 = (dom) => {
             {
                 type: 'pie',
                 radius: ['55%', '70%'],
-                center: ['22%', '50%'], //性设置图的上下左右的位置
+                // center: ['22%', '50%'], //设置图的上下左右的位置
                 avoidLabelOverlap: false,
                 label: {
                     show: false,

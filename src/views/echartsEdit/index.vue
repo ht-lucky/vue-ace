@@ -1,12 +1,14 @@
 <template>
     <div class="wrap">
-        <header class="App-header">
-            <p>Echarts 图表</p>
-        </header>
-
-        <div class="top-tab">
-            <div v-for="item in topList" @click="choosedMethod(item)" :class="{ 'active-text': choosed == item }">
-                {{ item }}
+        <div class="sticky-css">
+            <header class="App-header">
+                <p>Echarts 图表</p>
+            </header>
+    
+            <div class="top-tab">
+                <div v-for="item in topList" @click="choosedMethod(item)" :class="{ 'active-text': choosed == item }">
+                    {{ item }}
+                </div>
             </div>
         </div>
         <div className="gallery">
@@ -188,6 +190,15 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.sticky-css{
+    min-height: 60px;
+    padding: 10px 0px;
+    position: sticky;
+    top: 0px;
+    background-color: #282C34;
+    z-index:  999999999999;
+    width: 100%;
+}
 .top-tab {
     display: flex;
     color: #fff;
